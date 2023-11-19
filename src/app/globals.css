@@ -89,6 +89,10 @@
   @apply mx-4 rounded-full border border-black bg-transparent py-2.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
 }
 
+.outline_btn_2 {
+  @apply mx-2 rounded-full border border-black bg-transparent py-2.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
 .head_text {
   @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
 }
@@ -215,4 +219,18 @@
 
 .card_subtext {
   @apply font-satoshi font-bold text-gray-800 text-center text-sm
+}
+
+
+/*Modal*/
+.modal{
+  @apply fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm justify-center items-center
+}
+
+.modal-box{
+  @apply w-[600px]
+}
+
+.modal-backround{
+  @apply bg-white p-2 rounded
 }

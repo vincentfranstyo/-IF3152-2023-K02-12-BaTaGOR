@@ -7,7 +7,10 @@ import {signIn, signOut, useSession, getProviders} from "next-auth/react";
 
 const Navbar = () => {
 	// user login data status, dummy for now
-	const isUserLogged = true
+	const isUserLogged = false
+
+	// popup button state
+	const [buttonPopup, setbuttonPopup] = useState(false)
   return (
     <nav className="flex-between w-full mb-16 pt-4">
 			{/**Clickable logo: Image wraped in link */}
@@ -36,7 +39,9 @@ const Navbar = () => {
 						className="search_input peer"
 						// todo implement functioning search bar
 						/>
-						<Link href="/" className="outline_btn"> Home </Link>
+						<button type = "button"  onClick={()=> {}} className="outline__btn">
+              Sign Out
+            </button>
 						<Link href="/history" className="blue_btn_2"> History </Link>	
 						<Link href="/profile">
 							<Image 
@@ -52,13 +57,15 @@ const Navbar = () => {
 					
 				): (	// else
 					// todo ganti ke sign in option beneran
-					<div className="flex-between gap-4 md:gap-8">
-						<Link href="/" className="outline_btn"> Home </Link>
-						<button type = "button"  onClick={()=> {}} className="blue_btn_2">
-              Sign In
-            </button>
-
+					<div className="flex-between gap-4 md:gap-4">
+						<Link href="/" className="outline_btn">
+            	Register
+          	</Link>
+						<Link href="/auth/SignIn" className="blue_btn_2">
+            	Sign In
+          	</Link>
 					</div>
+					
 				)}
 				
 			</div>
