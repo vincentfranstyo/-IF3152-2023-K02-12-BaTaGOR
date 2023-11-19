@@ -1,4 +1,5 @@
 {/**Home Page and Landing Page */}
+import Feed from "../../components/Feed"
 
 const Home = () => {
   // variable to keep the user status
@@ -8,15 +9,15 @@ const Home = () => {
     <section className="w-full flex-start flex-col mx-16">
       {isUserLogged?(
         <div>
-          <h1 className="headline_text text-left purple_gradient">
+          <h1 className="headline_text text-left blue_gradient">
           Welcome, Kean!  
           <br/>
         </h1>
         <h2 className="orange_gradient headline_subtext text-left">Where would you like to play?</h2>
         </div>
-      ):(
+      ):(   //todo implement default page
         <div>
-          <h1 className="headline_text text-left purple_gradient">
+          <h1 className="headline_text text-left blue_gradient">
           Welcome to BaTaGOR
           <br/>
         </h1>
@@ -24,6 +25,8 @@ const Home = () => {
         </div>
         
       )}
+
+      <Feed />
       
     </section>
   )
