@@ -37,7 +37,7 @@ const Navbar = () => {
 						// todo implement functioning search bar
 						/>
 						<Link href="/" className="outline_btn"> Home </Link>
-						<Link href="/history" className="purple_btn_2"> History </Link>	
+						<Link href="/history" className="blue_btn_2"> History </Link>	
 						<Link href="/profile">
 							<Image 
 								alt="Profile"
@@ -54,7 +54,7 @@ const Navbar = () => {
 					// todo ganti ke sign in option beneran
 					<div className="flex-between gap-4 md:gap-8">
 						<Link href="/" className="outline_btn"> Home </Link>
-						<button type = "button"  onClick={()=> {}} className="purple_btn">
+						<button type = "button"  onClick={()=> {}} className="blue_btn_2">
               Sign In
             </button>
 

@@ -81,6 +81,10 @@
   @apply mr-4 rounded-full border border-black bg-indigo-500 py-2.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
 }
 
+.blue_btn_2 {
+  @apply mr-4 rounded-full border border-black bg-blue-500 py-2.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+}
+
 .outline_btn {
   @apply mx-4 rounded-full border border-black bg-transparent py-2.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
 }
