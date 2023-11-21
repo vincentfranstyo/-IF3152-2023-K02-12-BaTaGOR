@@ -44,7 +44,7 @@ const SignInForm = () => {
             <br></br>
             <div className="mt-2">
               <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-orange-400 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-600">
-                Login
+                Sign In
               </button>
             </div>
           </form>
@@ -52,7 +52,7 @@ const SignInForm = () => {
           <p className="mt-4 text-sm text-center text-gray-700">
             Don't have an account?{" "}
             <Link
-              href="/signup"
+              href="/auth/Register"
               className="font-medium text-blue-600 hover:underline"
             >
               Register

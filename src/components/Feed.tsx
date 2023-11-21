@@ -16,24 +16,28 @@ const Feed = () => {
                 rating={4.5}
                 price={10000}
             />
+            
+            <div className="hidden lg:flex">
+                <FieldCard2
+                    image="/assets/images/futsal_placeholder_2.jpg"
+                    name="Duke of Gawangan"
+                    address="Jalan Ciheulang Baru No.12"
+                    distance={2}
+                    rating={3.9}
+                    price={10000}
+                />
+            </div>
 
-            <FieldCard2
-                image="/assets/images/futsal_placeholder_2.jpg"
-                name="Duke of Gawangan"
-                address="Jalan Ciheulang Baru No.12"
-                distance={2}
-                rating={3.9}
-                price={10000}
-            />
-
-            <FieldCard2
-                image="/assets/images/futsal_placeholder_1.jpg"
-                name="Farhan Algani GOR"
-                address="Jalan Ciheulang Baru No.12"
-                distance={2}
-                rating={1.2}
-                price={10000}
-            />
+            <div className="hidden lg:flex">
+                <FieldCard2
+                    image="/assets/images/futsal_placeholder_1.jpg"
+                    name="Farhan Algani GOR"
+                    address="Jalan Ciheulang Baru No.12"
+                    distance={2}
+                    rating={1.2}
+                    price={10000}
+                />
+            </div>
         
         </section>
 
@@ -47,15 +51,18 @@ const Feed = () => {
                 price={10000}
             />
 
-            <FieldCard2
-                image="/assets/images/futsal_placeholder_2.jpg"
-                name="Duke of Gawangan"
-                address="Jalan Ciheulang Baru No.12"
-                distance={2}
-                rating={3.9}
-                price={10000}
-            />
+            <div className="hidden lg:flex">
+                <FieldCard2
+                    image="/assets/images/futsal_placeholder_2.jpg"
+                    name="Duke of Gawangan"
+                    address="Jalan Ciheulang Baru No.12"
+                    distance={2}
+                    rating={3.9}
+                    price={10000}
+                />
+            </div>
 
+            <div className="hidden lg:flex">
             <FieldCard2
                 image="/assets/images/futsal_placeholder_1.jpg"
                 name="Farhan Algani GOR"
@@ -64,6 +71,8 @@ const Feed = () => {
                 rating={1.2}
                 price={10000}
             /> 
+            </div>
+            
         </section>
 
     </div>

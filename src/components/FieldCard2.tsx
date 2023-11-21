@@ -11,7 +11,7 @@ const FieldCard2 = ({image, name, address, distance, rating, price}: {image: str
     		<h1 className="card_title">{name}</h1>
     		<p className="card_address">{address}</p>
   		</div>
-  		<div className="card_details max-sm:hidden">
+  		<div className="card_details">
     		<div className="card_slot lg:visible">
 					<Image src="/assets/icons/location_pin.png" alt="Distance" width={30} height={30} className="card_icon"/>
       		<p className="card_subtext">{distance} KM</p>

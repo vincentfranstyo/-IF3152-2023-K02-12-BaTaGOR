@@ -111,7 +111,7 @@ const SignInForm = () => {
           <p className="mt-4 text-sm text-center text-gray-700">
             Already have an account?{" "}
             <Link
-              href="./auth/SignIp"
+              href="/auth/SignIn"
               className="font-medium text-blue-600 hover:underline"
             >
               Sign In

@@ -3,7 +3,7 @@ import Feed from "../components/Feed"
 
 const Home = () => {
   // variable to keep the user status
-  const isUserLogged = false;
+  const isUserLogged = true;
 
   return (
     <section className="w-full flex-start flex-col mx-16">

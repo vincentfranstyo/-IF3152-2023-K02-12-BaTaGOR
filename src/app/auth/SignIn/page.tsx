@@ -1,6 +1,6 @@
 {/**Home Page and Landing Page */}
-import Feed from "../../components/Feed"
-import RegisterForm from "../../components/RegisterForm";
+import Feed from "../../../components/Feed"
+import SignInForm from "../../../components/SignInForm";
 import Image from "next/image";
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <section className="w-full flex-start flex-col mx-16 justify-center">
       <div className="w-full h-full justify-center">
-        <RegisterForm></RegisterForm>
+        <SignInForm></SignInForm>
       </div>
     </section>
   )

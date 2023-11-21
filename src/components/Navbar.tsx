@@ -7,7 +7,7 @@ import {signIn, signOut, useSession, getProviders} from "next-auth/react";
 
 const Navbar = () => {
 	// user login data status, dummy for now
-	const isUserLogged = false
+	const isUserLogged = true
 
 	// popup button state
 	const [buttonPopup, setbuttonPopup] = useState(false)
@@ -56,9 +56,9 @@ const Navbar = () => {
 					</div>
 					
 				): (	// else
-					// todo ganti ke sign in option beneran
+					// todo ganti ke sign in sama register option beneran
 					<div className="flex-between gap-4 md:gap-4">
-						<Link href="/" className="outline_btn">
+						<Link href="/auth/Register" className="outline_btn">
             	Register
           	</Link>
 						<Link href="/auth/SignIn" className="blue_btn_2">
