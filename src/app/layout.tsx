@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from "@/components/Navbar" 
+import {Toaster} from "@/components/ui/toaster"
+import Provider from "@/components/Provider" 
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +18,7 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
   return (
     <html lang="en">
         <body>
+          <Provider>
             <div className="main">
                 <div className='gradient'/>
             </div>
@@ -25,6 +28,8 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
                 <Navbar/>   
                 {children}
             </main>
+            <Toaster/>
+            </Provider>
         </body>
     </html>
   )

@@ -9,9 +9,9 @@
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model archives {
-    history_id BigInt  @default(autoincrement())
-    booking_id BigInt
-    field_id   BigInt
+    history_id Int  @default(autoincrement())
+    booking_id Int
+    field_id   Int
     booking    booking @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade)
     field      field   @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
 
@@ -20,13 +20,13 @@
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model booking {
-    booking_id      BigInt           @id @unique @default(autoincrement())
-    duration_minute BigInt
+    booking_id      Int           @id @unique @default(autoincrement())
+    duration_minute Int
     start_time      DateTime         @db.Time(6)
     booking_date    DateTime         @db.Date
-    total_price     BigInt
-    customer_id     BigInt
-    field_id        BigInt
+    total_price     Int
+    customer_id     Int
+    field_id        Int
     archives        archives[]
     customer        customer         @relation(fields: [customer_id], references: [user_id], onDelete: Cascade)
     field           field            @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
@@ -35,7 +35,7 @@
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model customer {
-    user_id  BigInt    @id @unique @default(autoincrement())
+    user_id  Int    @id @unique @default(autoincrement())
     domicile String?
     booking  booking[]
     user     user      @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
@@ -43,16 +43,16 @@
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model field {
-    field_id           BigInt     @id @unique @default(autoincrement())
+    field_id           Int     @id @unique @default(autoincrement())
     field_name         String
     street             String
     city               String
     province           String
-    postal_code        BigInt
+    postal_code        Int
     image_url          String
-    rate_per_hour      BigInt
+    rate_per_hour      Int
     operational_status String
-    owner_id           BigInt?
+    owner_id           Int?
     archives           archives[]
     booking            booking[]
     owner              owner?     @relation(fields: [owner_id], references: [user_id], onDelete: Cascade)
@@ -61,8 +61,8 @@
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model manage_booking {
-    booking_id BigInt
-    staff_id   BigInt
+    booking_id Int
+    staff_id   Int
     booking    booking @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade)
     staff      staff   @relation(fields: [staff_id], references: [user_id], onDelete: Cascade)
 
@@ -71,15 +71,15 @@
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model owner {
-    user_id BigInt  @id @unique @default(autoincrement())
+    user_id Int  @id @unique @default(autoincrement())
     field   field[]
     user    user    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
   }
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model staff {
-    user_id        BigInt           @unique
-    field_id       BigInt           @map("field-id")
+    user_id        Int           @unique
+    field_id       Int           @map("field-id")
     manage_booking manage_booking[]
     field          field            @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
     user           user             @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
@@ -89,13 +89,12 @@
 
   /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
   model user {
-    user_id      BigInt    @id @unique @default(autoincrement())
+    user_id      Int    @id @unique @default(autoincrement())
     username     String    @unique
     name         String
     phone_num    String
     email        String
-    hashed_pass  String?
-    login_status String
+    hashed_pass  String
     access_level String
     customer     customer?
     owner        owner?
