@@ -1,22 +1,9 @@
 {/**Home Page and Landing Page */}
 import Feed from "../components/Feed"
-import {PrismaClient} from '@prisma/client';
-import { User } from '@/db/models'
-
-const prisma = new PrismaClient();
-
-export async function users() {
-  const users = await prisma.user.findMany();
-
-  // Close the connection to the database
-  await prisma.$disconnect();
-
-  return {props: {users}};
-}
 
 const Home = () => {
   // variable to keep the user status
-  const isUserLogged = true;
+  const isUserLogged = false;
 
   return (
     <section className="w-full flex-start flex-col mx-16">
