@@ -1,48 +1,38 @@
-{/**Home Page and Landing Page */
-}
+{/**Home Page and Landing Page */}
 import Feed from "../components/Feed"
 import {PrismaClient} from '@prisma/client';
-import {User} from '@/db/models'
+import {getServerSession} from "next-auth"
+import {authOptions} from "@/lib/auth"
 
 const prisma = new PrismaClient();
 
 export async function users() {
     const users = await prisma.user.findMany();
-
-    // Close the connection to the database
     await prisma.$disconnect();
-
     return {props: {users}};
 }
 
-const Home = () => {
-    // variable to keep the user status
-    const isUserLogged = true;
+const Home = async () => {
+    // logged in user data
+    const session = await getServerSession(authOptions)
 
     return (<section className="w-full flex-start flex-col mx-16">
-            {isUserLogged ? (<div>
-                    <h1 className="headline_text text-left blue_gradient">
-                        Welcome, Kean!
+            {session?.user ? (<div>
+                    <h1 className="headline_text text-left blue_gradient pb-4">
+                        Welcome, {session?.user.username}
                         <br/>
                     </h1>
                     <h2 className="orange_gradient headline_subtext text-left">Where would you like to play?</h2>
-                </div>) : (   // todo implement default page
+                </div>) : (   //todo implement default page
                 <div>
                     <h1 className="headline_text text-left blue_gradient">
                         Welcome to BaTaGOR
                         <br/>
                     </h1>
-                    <h2 className="orange_gradient headline_subtext text-left">Sign In to access our collection of
-                                                                               football fields</h2>
-
-
+                    <h2 className="orange_gradient headline_subtext text-left">Sign In to access our collection of football fields</h2>
                 </div>
-
             )}
-
             <Feed/>
-
-
         </section>)
 }
 

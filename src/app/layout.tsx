@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-import Navbar from "@/components/Navbar" 
-
-const inter = Inter({ subsets: ['latin'] })
+import Navbar from "@/components/Navbar"
+import {Toaster} from "@/components/ui/toaster"
+import Provider from "@/components/Provider"
+import React from "react";
 
 export const metadata: Metadata = {
   title: 'BaTaGOR',
@@ -16,15 +16,18 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
   return (
     <html lang="en">
         <body>
+          <Provider>
             <div className="main">
                 <div className='gradient'/>
             </div>
-            
+
             {/**Calls the navbar to be present in all the pages */}
             <main className='app'>
-                <Navbar/>   
+                <Navbar/>
                 {children}
             </main>
+            <Toaster/>
+            </Provider>
         </body>
     </html>
   )
