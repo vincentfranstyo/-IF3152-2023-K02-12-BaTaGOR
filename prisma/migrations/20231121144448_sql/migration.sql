@@ -1,28 +1,28 @@
 -- CreateTable
 CREATE TABLE "archives" (
-    "history_id" BIGSERIAL NOT NULL,
-    "booking_id" BIGINT NOT NULL,
-    "field_id" BIGINT NOT NULL,
+    "history_id" SERIAL NOT NULL,
+    "booking_id" INTEGER NOT NULL,
+    "field_id" INTEGER NOT NULL,
 
     CONSTRAINT "archives_pkey" PRIMARY KEY ("history_id","booking_id","field_id")
 );
 
 -- CreateTable
 CREATE TABLE "booking" (
-    "booking_id" BIGSERIAL NOT NULL,
-    "duration_minute" BIGINT NOT NULL,
+    "booking_id" SERIAL NOT NULL,
+    "duration_minute" INTEGER NOT NULL,
     "start_time" TIME(6) NOT NULL,
     "booking_date" DATE NOT NULL,
-    "total_price" BIGINT NOT NULL,
-    "customer_id" BIGINT NOT NULL,
-    "field_id" BIGINT NOT NULL,
+    "total_price" INTEGER NOT NULL,
+    "customer_id" INTEGER NOT NULL,
+    "field_id" INTEGER NOT NULL,
 
     CONSTRAINT "booking_pkey" PRIMARY KEY ("booking_id")
 );
 
 -- CreateTable
 CREATE TABLE "customer" (
-    "user_id" BIGSERIAL NOT NULL,
+    "user_id" SERIAL NOT NULL,
     "domicile" TEXT,
 
     CONSTRAINT "customer_pkey" PRIMARY KEY ("user_id")
@@ -30,52 +30,51 @@ CREATE TABLE "customer" (
 
 -- CreateTable
 CREATE TABLE "field" (
-    "field_id" BIGSERIAL NOT NULL,
+    "field_id" SERIAL NOT NULL,
     "field_name" TEXT NOT NULL,
     "street" TEXT NOT NULL,
     "city" TEXT NOT NULL,
     "province" TEXT NOT NULL,
-    "postal_code" BIGINT NOT NULL,
+    "postal_code" INTEGER NOT NULL,
     "image_url" TEXT NOT NULL,
-    "rate_per_hour" BIGINT NOT NULL,
+    "rate_per_hour" INTEGER NOT NULL,
     "operational_status" TEXT NOT NULL,
-    "owner_id" BIGINT,
+    "owner_id" INTEGER,
 
     CONSTRAINT "field_pkey" PRIMARY KEY ("field_id")
 );
 
 -- CreateTable
 CREATE TABLE "manage_booking" (
-    "booking_id" BIGINT NOT NULL,
-    "staff_id" BIGINT NOT NULL,
+    "booking_id" INTEGER NOT NULL,
+    "staff_id" INTEGER NOT NULL,
 
     CONSTRAINT "manage_booking_pkey" PRIMARY KEY ("booking_id","staff_id")
 );
 
 -- CreateTable
 CREATE TABLE "owner" (
-    "user_id" BIGSERIAL NOT NULL,
+    "user_id" SERIAL NOT NULL,
 
     CONSTRAINT "owner_pkey" PRIMARY KEY ("user_id")
 );
 
 -- CreateTable
 CREATE TABLE "staff" (
-    "user_id" BIGINT NOT NULL,
-    "field-id" BIGINT NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "field-id" INTEGER NOT NULL,
 
     CONSTRAINT "staff_pkey" PRIMARY KEY ("user_id","field-id")
 );
 
 -- CreateTable
 CREATE TABLE "user" (
-    "user_id" BIGSERIAL NOT NULL,
+    "user_id" SERIAL NOT NULL,
     "username" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "phone_num" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "hashed_pass" TEXT,
-    "login_status" TEXT NOT NULL,
     "access_level" TEXT NOT NULL,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("user_id")
