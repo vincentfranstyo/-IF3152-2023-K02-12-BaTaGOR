@@ -22,6 +22,7 @@ const Home = async () => {
   return (
     <section className="w-full flex-start flex-col mx-16">
       {session?.user ?(
+        // If the user is logged in, they get a welcome page with their username
         <div>
           <h1 className="headline_text text-left blue_gradient pb-4">
           Welcome, {session?.user.username} 
@@ -29,7 +30,8 @@ const Home = async () => {
         </h1>
         <h2 className="orange_gradient headline_subtext text-left">Where would you like to play?</h2>
         </div>
-      ):(   //todo implement default page
+      ):(   
+        // If the user is not logged in, they get a default welcome page
         <div>
           <h1 className="headline_text text-left blue_gradient">
           Welcome to BaTaGOR
