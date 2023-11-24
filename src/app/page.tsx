@@ -3,6 +3,7 @@ import Feed from "../components/Feed"
 import {PrismaClient} from '@prisma/client';
 import {getServerSession} from "next-auth"
 import {authOptions} from "@/lib/auth"
+import {field} from "@/types/models"
 
 const prisma = new PrismaClient();
 
@@ -12,11 +13,18 @@ export async function users() {
     return {props: {users}};
 }
 
+export async function fields() {
+    const fields = await prisma.field.findMany();
+    await prisma.$disconnect();
+    return {props: {fields}};
+}
+
 const Home = async () => {
     // logged in user data
     const session = await getServerSession(authOptions)
 
-    return (<section className="w-full flex-start flex-col mx-16">
+    return (
+        <section className="w-full flex-start flex-col mx-16">
             {session?.user ? (<div>
                     <h1 className="headline_text text-left blue_gradient pb-4">
                         Welcome, {session?.user.username}
@@ -32,7 +40,7 @@ const Home = async () => {
                     <h2 className="orange_gradient headline_subtext text-left">Sign In to access our collection of football fields</h2>
                 </div>
             )}
-            <Feed/>
+            <Feed />
         </section>)
 }
 
