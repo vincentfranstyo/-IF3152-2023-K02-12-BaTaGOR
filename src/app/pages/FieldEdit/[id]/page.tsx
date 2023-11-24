@@ -2,7 +2,7 @@
 import React from 'react'
 import {field} from '@/types/models'
 import Image from 'next/image'
-import FieldDesc from '@/components/FieldDesc'
+import FieldEdit from '@/components/FieldEdit'
 import Link from 'next/link'
 
 
@@ -30,17 +30,7 @@ const FieldInfo: React.FC<field> = ( {params} ) => {
                         : <div className={"w-[80%]"}>No Image found</div>
                     }
                 </div>
-                <FieldDesc field={field} />
-                <div className={"border border-black"} />
-                <div className={"w-full h-12 flex items-center bg-blue-700 mt-5 mb-10 rounded"}>
-                    <div className={"w-[75%] flex font-semibold ml-5 text-white"}>
-                        <p>Rp {field.rate_per_hour},- / hour / field</p>
-                    </div>
-                    <Link href={`/pages/FieldOrder/${field?.field_id}`} className={"w-[20%] h-6 font-bold bg-white" +
-                        " cursor-pointer items-center text-center rounded px-3"}>
-                        Book Now!
-                    </Link>
-                </div>
+                <FieldEdit field={field} />
             </div>
         </>
     )

@@ -1,10 +1,11 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import {field} from '@/types/models'
 import {PrismaClient} from '@prisma/client';
 import { CiLocationOn, CiStar, CiPhone } from "react-icons/ci";
 import { GiSoccerField } from "react-icons/gi";
 import { MdOutlineSchedule } from "react-icons/md";
+import Link from "next/link"
 
 const prisma = new PrismaClient();
 
@@ -12,17 +13,22 @@ interface FieldDescProps {
     field: field;
 }
 
-async function users() {
-    const users = await prisma.user.findMany();
-    await prisma.$disconnect();
-    return {props: {users}};
-}
-
 const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
     return (
         <div id="FieldDesc" className={"max-w-[1200px] mt-3 flex flex-col gap-5 mb-5"}>
-            <div id={"title"} className={"flex font-extrabold text-3xl"}>
-                {field?.field_name}
+            <div className={"flex w-full h-auto justify-between"}>
+                <div id={"title"} className={"flex font-extrabold text-3xl"}>
+                    {field?.field_name}
+                </div>
+                <Link
+                    id={"edit"}
+                    className={"flex h-fit bg-gray-100 shadow-sm" +
+                    " hover:bg-gray-500 hover:text-white hover:shadow-xl px-2" +
+                    " items-center justify-center font-semibold text-lg" +
+                    " rounded"}
+                    href={`/pages/FieldEdit/${field.field_id}`}
+                >edit</Link>
+                {/*TODO: Onclick edit, isOwner: visible, the rest: hidden */}
             </div>
             <div id={"location"} className={"flex gap-5"}>
                 <CiLocationOn size={30} />
