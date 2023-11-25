@@ -27,7 +27,7 @@ const Navbar = async () => {
 
 			{/*Desktop Navigation */}
 			<div className="sm:flex hidden">
-				{session?.user ? ( // todo change to session check, change profile pic
+				{session?.user ? ( // If the user is logged in, show the option to check their history, sign out, and 
 					<div className="flex-between gap-4 md:gap-8">
 						{/**Search Bar */}
 						<input
@@ -51,8 +51,8 @@ const Navbar = async () => {
 
 					</div>
 					
-				): (	// else
-					// todo ganti ke sign in sama register option beneran
+				): (	// if the user is signed out, only show them the option to sign in and register
+					
 					<div className="flex-between gap-4 md:gap-4">
 						<Link href="/auth/Register" className="outline_btn">
             	Register
