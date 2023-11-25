@@ -54,6 +54,7 @@ const FieldEdit: React.FC<FieldEditProps> = ({field: field}) => {
                             placeholder={`${field.field_name}`}
                             className={"px-3 rounded"}
                             name={"field_name"}
+                            required
                         ></input>
                     </div>
                     {renderFormFields()}
