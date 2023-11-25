@@ -36,8 +36,10 @@ const FieldInfo: React.FC<field> = ( {params} ) => {
                     <div className={"w-[75%] flex font-semibold ml-5 text-white"}>
                         <p>Rp {field.rate_per_hour},- / hour / field</p>
                     </div>
-                    <Link href={`/pages/FieldOrder/${field?.field_id}`} className={"w-[20%] h-6 font-bold bg-white" +
-                        " cursor-pointer items-center text-center rounded px-3 hover:bg-blue-300"}>
+                    <Link href={`/pages/FieldOrder/${field?.field_id}`} className={"w-[25%] h-7 font-bold bg-white" +
+                        " cursor-pointer items-center text-center justify-center rounded px-3 hover:bg-yellow-300" +
+                        " hover:text-white" +
+                        " text-md sm:text-lg lg:text-xl mr-2"}>
                         Book Now!
                     </Link>
                 </div>

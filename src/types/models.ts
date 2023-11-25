@@ -25,4 +25,25 @@ interface fieldWithRatings {
     ratings: number
 }
 
-export type { field, fieldWithRatings }
+interface history {
+    history_id: number,
+    booking_id: number,
+    field_id: number,
+    field_name: string,
+    start_time: any,
+    date: any,
+    price: number,
+    duration_minutes: number
+}
+
+interface booking {
+    booking_id: number,
+    duration_minute: number,
+    start_time: any,
+    date: any,
+    total_price: number,
+    field_id: number,
+    user_id: number
+}
+
+export type { field, fieldWithRatings, history, booking }
