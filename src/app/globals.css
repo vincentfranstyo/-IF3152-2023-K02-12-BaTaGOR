@@ -181,7 +181,7 @@
 }
 
 .feed {
-  @apply mt-16 mx-auto w-full flex justify-center items-center flex-row gap-2;
+  @apply mt-16 mx-auto w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4;
 }
 
 .feed_layout {
@@ -191,7 +191,7 @@
 /* Card Components */
 
 .card_container{
-  @apply max-w-full max-h-full mx-12 bg-white rounded-xl overflow-hidden shadow-lg border border-gray-600 px-4 py-4 mb-4
+  @apply max-w-full max-h-full mx-12 bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl border border-gray-600 px-4 py-4 mb-4
 }
 
 .card_image{
@@ -219,7 +219,7 @@
 }
 
 .card_subtext {
-  @apply font-satoshi font-bold text-gray-800 text-center text-sm
+  @apply font-satoshi font-bold text-gray-800 text-center text-sm ml-5
 }
 
 

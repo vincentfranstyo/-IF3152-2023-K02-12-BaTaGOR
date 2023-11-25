@@ -1,85 +1,34 @@
 "use client";
-
-import {useState, useEffect} from "react";
-import FieldCard from "./FieldCard"
 import FieldCard2 from "./FieldCard2"
+import React from 'react'
+import {field} from "@/types/models"
+import Link from 'next/link'
 
-const Feed = () => {
-  return (
-    <div className="feed_container">
-        <section className="feed">
-            <FieldCard2
-                image="/assets/images/futsal_placeholder_1.jpg"
-                name="Vincent's Football Field"
-                address="Jalan Tubagus Ismail Raya No.23"
-                distance={3}
-                rating={4.5}
-                price={10000}
-            />
-            
-            <div className="hidden lg:flex">
-                <FieldCard2
-                    image="/assets/images/futsal_placeholder_2.jpg"
-                    name="Duke of Gawangan"
-                    address="Jalan Ciheulang Baru No.12"
-                    distance={2}
-                    rating={3.9}
-                    price={10000}
-                />
-            </div>
+interface FeedProps {
+    fields: field[]; // Assuming field is the type of your data
+}
 
-            <div className="hidden lg:flex">
-                <FieldCard2
-                    image="/assets/images/futsal_placeholder_1.jpg"
-                    name="Farhan Algani GOR"
-                    address="Jalan Ciheulang Baru No.12"
-                    distance={2}
-                    rating={1.2}
-                    price={10000}
-                />
-            </div>
-        
-        </section>
-
-        <section className="feed">
-            <FieldCard2
-                image="/assets/images/futsal_placeholder_1.jpg"
-                name="Vincent's Football Field"
-                address="Jalan Tubagus Ismail Raya No.23"
-                distance={3}
-                rating={4.5}
-                price={10000}
-            />
-
-            <div className="hidden lg:flex">
-                <FieldCard2
-                    image="/assets/images/futsal_placeholder_2.jpg"
-                    name="Duke of Gawangan"
-                    address="Jalan Ciheulang Baru No.12"
-                    distance={2}
-                    rating={3.9}
-                    price={10000}
-                />
-            </div>
-
-            <div className="hidden lg:flex">
-            <FieldCard2
-                image="/assets/images/futsal_placeholder_1.jpg"
-                name="Farhan Algani GOR"
-                address="Jalan Ciheulang Baru No.12"
-                distance={2}
-                rating={1.2}
-                price={10000}
-            /> 
-            </div>
-            
-        </section>
-
-    </div>
-    
-
-
-  )
+const Feed: React.FC<FeedProps> = ( {fields} ) => {
+    return (
+        <div className="feed_container">
+            <section className="feed">
+                {fields.map(field => (
+                    <Link key={field?.field_id} href={`/pages/FieldInfo/${field?.field_id}`} className={"hidden" +
+                        " lg:flex" +
+                        " cursor-pointer"}>
+                        <FieldCard2
+                            image={field?.image_url}
+                            name={field?.field_name}
+                            address={field?.street}
+                            distance={3}
+                            rating={4.5}
+                            price={field?.rate_per_hour}
+                        />
+                    </Link>
+                ))}
+            </section>
+        </div>
+    )
 }
 
 export default Feed
