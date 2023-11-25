@@ -7,6 +7,7 @@ import Link from 'next/link'
 
 
 const FieldInfo: React.FC<field> = ( {params} ) => {
+    // TODO: Params = data field yang di get dari DB sesuai ID, feel free klo ga dipake
     const field: (field) =
         {
             field_id: 1,
@@ -26,7 +27,6 @@ const FieldInfo: React.FC<field> = ( {params} ) => {
                 <div className={"flex justify-center"}>
                     {field?.image_url
                         ? <Image className={"w-[80%] rounded-lg"} src={field?.image_url} alt={`field ${field?.field_id}`} width={1200} height={200}/>
-                        // <div> {field?.field_name} </div>
                         : <div className={"w-[80%]"}>No Image found</div>
                     }
                 </div>

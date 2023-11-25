@@ -46,11 +46,12 @@ const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
             <div id={"phoneNumber"} className={"flex gap-5"}>
                 <CiPhone size={30} />
                 <div className={"font-[14px]"}>+654676346543</div>
+            {/*    TODO : valuenya di get dari staff yang corresponding dengan si field*/}
             </div>
             {/*TODO: ganti phoneNumber*/}
             <div id={"schedule"} className={"flex gap-5"}>
                 <MdOutlineSchedule size={30}/>
-                <div className={"font-[14px]"}>07.00 - 22.00 WIB</div>
+                <div className={"font-[14px]"}>08.00 - 22.00 WIB</div>
             </div>
         </div>
     );

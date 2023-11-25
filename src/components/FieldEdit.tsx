@@ -16,8 +16,8 @@ const FieldEdit: React.FC<FieldEditProps> = ({field: field}) => {
     const renderFormFields = () => {
         return Object.keys(field).filter((key) => !excludedKeys.includes(key)).map((key, value) => (
             <div key={`${field.field_id}`}
-                id={`${key}`}
-                className={"flex flex-col gap-2 text-[18px]"}>
+                 id={`${key}`}
+                 className={"flex flex-col gap-2 text-[18px]"}>
                 <label
                     className={"font-semibold"}
                     htmlFor={`${key}`}
@@ -25,7 +25,7 @@ const FieldEdit: React.FC<FieldEditProps> = ({field: field}) => {
                     {key.charAt(0).toUpperCase() + key.slice(1)}: </label>
                 <input
                     id={`${key}`}
-                    placeholder={`${field[key]}`}
+                    placeholder={`${String(field[key])}`}
                     className={"px-3 rounded"}
                     name={`${key}`}
                 ></input>
@@ -33,12 +33,13 @@ const FieldEdit: React.FC<FieldEditProps> = ({field: field}) => {
         ));
     };
     return (
-        <form id="Field Edit" className="max-w-[1200px] mt-3 flex flex-col gap-5 mb-5">
-            <>
+        <>
+            <div id="Field Edit" className="max-w-[1200px] mt-3 flex flex-col gap-5 mb-5">
                 <form
                     id="Field Edit"
                     className={"max-w-[1200px] mt-3 flex flex-col gap-5 mb-5"}
                 >
+                    {/*    TODO: TAMBAHIN ONsubmit*/}
                     <div
                         id={"FieldName"}
                         className={"flex flex-col gap-2 text-[24px]"}
@@ -56,14 +57,19 @@ const FieldEdit: React.FC<FieldEditProps> = ({field: field}) => {
                         ></input>
                     </div>
                     {renderFormFields()}
-                    <Link href={`/pages/FieldInfo/${field.field_id}`} className={"h-auto rounded bg-green-300" +
-                        " text-black" +
-                        " hover:text-white hover:bg-green-500 mx-auto px-3 py-1 w-[10%] text-center font-bold"}>
-                        Save
-                    </Link>
+                    <button
+                        type={"submit"}>
+                        <Link
+                            href={`/pages/FieldInfo/${field.field_id}`}
+                            className={"h-auto rounded bg-green-300" +
+                                " text-black" +
+                                " hover:text-white hover:bg-green-500 mx-auto px-3 py-1 w-[10%] text-center font-bold"}>
+                            Save
+                        </Link>
+                    </button>
                 </form>
-            </>
-        </form>
+            </div>
+        </>
     );
 }
 
