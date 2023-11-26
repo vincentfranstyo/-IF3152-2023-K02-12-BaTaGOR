@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";;
 import {db} from "@/db/db";
 import {hash} from "bcrypt";
 import * as z from "zod"
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 // Define a Field schema for input validation
 
@@ -22,6 +24,15 @@ const FieldSchema = z
 export async function PUT(req: Request) {
 
     try {
+
+        // auth
+        const session = await getServerSession(authOptions)
+
+        if (!session) throw Error()
+
+        if (session.user.username !== "admin") {
+            return NextResponse.json({field: null, message: "Forbidden"}, {status: 403})
+        }
 
         // Parse input
         const body = await req.json();
@@ -69,6 +80,15 @@ export async function DELETE(req: Request) {
 
     try {
 
+        // auth
+        const session = await getServerSession(authOptions)
+
+        if (!session) throw Error()
+
+        if (session.user.username !== "admin") {
+            return NextResponse.json({field: null, message: "Forbidden"}, {status: 403})
+        }
+
         // Parse input
         const body = await req.json();
         const { field_id } : 
@@ -99,3 +119,4 @@ export async function DELETE(req: Request) {
     }
 
 }
+
