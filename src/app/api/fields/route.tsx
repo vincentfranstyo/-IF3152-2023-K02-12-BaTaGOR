@@ -1,26 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from "@/lib/utils";
 import {NextResponse} from "next/server";
-import {field} from "@/types/models";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import {db} from "@/db/db";
 import {hash} from "bcrypt";
 import * as z from "zod"
-
-type Field = {
-    field_id: number;
-    field_name?: string;
-    street?: string;
-    city?: string;
-    province?: string;
-    postal_code?: number;
-    image_url?: string;
-    rate_per_hour?: number;
-    operational_status?: string;
-    owner_id?: number;
-  };
-
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -33,7 +18,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
         return NextResponse.json(fields, { status: 200 });
     } catch (error: any) {
         console.error('Error fetching fields:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
+        NextResponse.json('Internal Server Error', {status: 500});
     } finally {
         await prisma.$disconnect();
     }

@@ -3,7 +3,6 @@ import React from 'react'
 import {field} from '@/types/models'
 import Image from 'next/image'
 import FieldEdit from '@/components/FieldEdit'
-import Link from 'next/link'
 
 
 const FieldInfo: React.FC<field> = ( {} ) => {
