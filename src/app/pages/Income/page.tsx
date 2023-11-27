@@ -2,7 +2,7 @@
 "use client";
 import {field} from "@/types/models";
 import {useSession} from "next-auth/react";
-import IncomeTable from "@/app/api/fields/[field_id]/income/IncomeTable";
+import IncomeTable from "@/app/pages/Income/IncomeTable";
 
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
@@ -11,23 +11,6 @@ import Link from "next/link";
 const Home: React.FC = () => {
     const { data: session } = useSession();
     const [fields, setFields] = useState<field[]>([]);
-
-    
-
-    useEffect(() => {
-        fetch('/api/fields')
-            .then(response => {
-                // console.log('API response:', response);
-                return response.json();
-            })
-            .then(data => {
-                // console.log('API data:', data);
-                setFields(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }, []);
 
     return (
         <section className="w-full flex-start flex-col mx-16">
