@@ -4,6 +4,7 @@ import {field} from '@/types/models'
 import Image from 'next/image'
 import FieldEditForm from '@/components/FieldEditForm'
 import Link from 'next/link'
+import FieldEdit from '@/components/FieldEdit'
 
 
 const FieldInfo: React.FC<field> = ( {} ) => {

@@ -11,6 +11,15 @@ interface field {
     owner_id: number
 }
 
+interface user {
+    username: string,
+    name: string,
+    phone_num: string,
+    email: string,
+    unhashed_pass: string,
+    access_level: string,
+}
+
 interface fieldWithRatingsAndDistance {
     field_id: number,
     ratings: number,
@@ -23,9 +32,9 @@ interface history {
     field_id: number,
     field_name: string,
     start_time: any,
-    date: any,
-    price: number,
-    duration_minutes: number
+    booking_date: any,
+    total_price: number,
+    duration_minute: number
 }
 
 interface booking {
@@ -44,4 +53,4 @@ interface fieldIncome {
     field_income: number
 }
 
-export type { field, fieldWithRatingsAndDistance, history, booking, fieldIncome }
+export type { field, fieldWithRatingsAndDistance, history, booking, fieldIncome, user }
