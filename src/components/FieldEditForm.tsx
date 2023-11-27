@@ -204,7 +204,7 @@ const RegisterForm = () => {
                         </div>
                         <div className="mt-8">
                             <Button type="submit"
-                                    className="font-inter w-full px-4 py-6 tracking-wide text-white transition-colors duration-200 transform bg-orange-400 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-600 text-md">Register</Button>
+                                    className="font-inter w-full px-4 py-6 tracking-wide text-white transition-colors duration-200 transform bg-orange-400 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-600 text-md">Confirm Edit</Button>
                         </div>
 
                     </form>

@@ -42,7 +42,7 @@ const Home: React.FC = () => {
     }, []);
 
     return (
-        <div className={"flex flex-col max-w-[1200px] justify-center items-center mx-auto"}>
+        <div className={"flex flex-col max-w-full items-center mx-auto"}>
             <section className="w-full flex-start flex-col mx-16">
                 {session?.user ? (
                     <div>

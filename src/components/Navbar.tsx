@@ -51,7 +51,7 @@ const Navbar = () => {
                         <NavButtonSignout/>
                         <Link href="/pages/History" className="blue_btn_2"> History </Link>
                         {userData?.access_level === "Owner" && (
-                            <Link href="/pages/Income" className="yellow_btn_2">Income </Link>
+                            <Link href="/pages/Income" className="orange_btn_2">Income </Link>
                         )}
 
                         <Link href="/dashboard/admin">

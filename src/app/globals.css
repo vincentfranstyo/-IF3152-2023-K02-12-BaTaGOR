@@ -89,8 +89,8 @@
   @apply mr-4 rounded-full border border-black bg-blue-500 py-2.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
 }
 
-.yellow_btn_2 {
-  @apply mr-4 rounded-full border border-black bg-yellow-300 py-2.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+.orange_btn_2 {
+  @apply mr-4 rounded-full border border-black bg-amber-500 py-2.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
 }
 
 .outline_btn {

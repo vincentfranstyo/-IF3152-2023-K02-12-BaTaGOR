@@ -48,12 +48,12 @@ const FieldInfo: React.FC<FieldInfoProps> = ({params}: { params: { id: string } 
                 </div>
                 <FieldDesc field={field}/>
                 <div className={"border border-black"}/>
-                <div className={"w-full h-12 flex items-center bg-blue-700 mt-5 mb-10 rounded"}>
+                <div className={"w-full h-12 flex items-center rounded-md bg-blue-600 mt-5 mb-10"}>
                     <div className={"w-[75%] flex font-semibold ml-5 text-white"}>
                         <p>Rp {field?.rate_per_hour},- / hour / field</p>
                     </div>
                     <Link href={`/pages/FieldOrder/${field?.field_id}`} className={"w-[25%] h-7 font-bold bg-white" +
-                        " cursor-pointer items-center text-center justify-center rounded px-3 hover:bg-yellow-300" +
+                        " cursor-pointer items-center text-center justify-center rounded px-3 hover:bg-amber-500" +
                         " hover:text-white" +
                         " text-md sm:text-lg lg:text-xl mr-2"}>
                         Book Now!
