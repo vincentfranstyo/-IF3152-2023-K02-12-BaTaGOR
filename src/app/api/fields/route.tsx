@@ -8,6 +8,19 @@ import {db} from "@/db/db";
 import {hash} from "bcrypt";
 import * as z from "zod"
 
+type Field = {
+    field_id: number;
+    field_name?: string;
+    street?: string;
+    city?: string;
+    province?: string;
+    postal_code?: number;
+    image_url?: string;
+    rate_per_hour?: number;
+    operational_status?: string;
+    owner_id?: number;
+  };
+
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -31,60 +44,82 @@ const FieldSchema = z.object({
     field_name: z.string(),
     street: z.string(),
     city: z.string(),
-    province: z.string().min(1, "Province is required"),
-    postal_code: z.number().min(1, "Postal code is required"),
-    image_url: z.string().min(1, "Image URL is required"),
-    rate_per_hour: z.number().min(1, "Rate per hour is required"),
-    operational_status: z.string().min(1, "Operational status is required"),
-    owner_id: z.number().min(1),
-  });
-  
-  export async function POST(req: Request, res: NextApiResponse) {
+    province: z.string(),
+    postal_code: z.number(),
+    image_url: z.string(),
+    rate_per_hour: z.number(),
+    operational_status: z.string(),
+    owner_id: z.number()
+});
+
+export async function POST(req: Request) {
+
     try {
-      const body = await req.json();
-      const {
-        field_id,
-        field_name,
-        street,
-        city,
-        province,
-        postal_code,
-        image_url,
-        rate_per_hour,
-        operational_status,
-        owner_id,
-      } = FieldSchema.parse(body);
-  
-      // Check if the field_id already exists
-      const existingFieldById = await db.field.findUnique({
-        where: { field_id: field_id },
-      });
-  
-      if (existingFieldById !== null) {
-        return NextResponse.json(
-          { field: null, message: "This field ID has already been registered" },
-          { status: 409 }
-        );
-      }
-  
-      const newField = await db.field.create({
-        data: {
-          field_id,
-          field_name,
-          street,
-          city,
-          province,
-          postal_code,
-          image_url,
-          rate_per_hour,
-          operational_status,
-          owner_id,
-        },
-      });
-  
-      return NextResponse.json(newField);
-    } catch (error: any) {
-      console.error("Error", error);
-      return new Response("An error occurred", { status: 500 });
+
+
+        // auth
+        const session = await getServerSession(authOptions)
+
+        //if (!session) throw Error()
+
+        // Parse input
+        const body = await req.json();
+        const parsedField: Field = FieldSchema.parse(body);
+
+        // Create a new object with the field_id from the context
+        const field: Field = {
+            ...parsedField,
+            field_id: parseInt(body.field_id)
+        };
+        const ID = parseInt(body.field_id);
+        // createKosong
+        const newField = await db.field.create({
+            data: {
+                field_id : ID,
+                field_name : "",
+                street : "",
+                city : "",
+                province : "" ,
+                postal_code : 0,
+                image_url : "",
+                rate_per_hour : 0,
+                operational_status : "operational",
+                owner_id : 6
+            },
+        })
+
+        // Check for field in db
+        const existingFieldById = await db.field.findUnique({
+            where: {field_id: field.field_id }
+        })
+
+        if (existingFieldById === null) {
+            return NextResponse.json({ field: null, message: "This field does not exist" }, { status: 404 })
+        }
+
+        // Update
+        const updateField = await db.field.update({
+            where: {
+                field_id : field.field_id,
+            },
+            data: {
+                field_name : field.field_name ?? existingFieldById.field_name,
+                street : field.street ?? existingFieldById.street,
+                city : field.city ?? existingFieldById.city,
+                province : field.province  ??  existingFieldById.province,
+                postal_code : field.postal_code ??  existingFieldById.postal_code,
+                image_url : field.image_url  ??  existingFieldById.image_url,
+                rate_per_hour : field.rate_per_hour  ??  existingFieldById.rate_per_hour,
+                operational_status : field.operational_status ??  existingFieldById.operational_status,
+                owner_id : field.owner_id  ??  existingFieldById.owner_id
+            },
+        })
+
+        return NextResponse.json({field: updateField, message: "Field created successfully"}, {status : 200});
+
+    } catch (error) {
+        console.error("Error", error)
+        return new Response("An error occurred", { status: 500 });
     }
-  }
+
+}
