@@ -102,7 +102,7 @@ const FieldBook: React.FC<FieldBookProps> = ({field: field}) => {
             disabled: false
         },
     ]
-    const [days, setDays] = useState<Days[]>([]);
+    const [days, setDays] = useState<days[]>([]);
 
     useEffect(() => {
         const today = new Date();
