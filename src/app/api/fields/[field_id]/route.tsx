@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/utils";
 import { NextResponse } from "next/server";;
 import {db} from "@/db/db";
-import {hash} from "bcrypt";
 import * as z from "zod"
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -97,21 +96,29 @@ export async function PUT(req: Request, context : { params : {field_id : string}
             return NextResponse.json({ field: null, message: "This field does not exist" }, { status: 404 })
         }
 
+        const checked_field_name = (field.field_name ?? existingFieldById.field_name)
+        const checked_street = (field.street ?? existingFieldById.street)
+        const checked_city = (field.city ?? existingFieldById.city)
+        const checked_province = (field.province  ??  existingFieldById.province)
+        const checked_postal_code = (field.postal_code ??  existingFieldById.postal_code)
+        const checked_image_url = (field.image_url  ??  existingFieldById.image_url)
+        const checked_rate_per_hour = (field.rate_per_hour  ??  existingFieldById.rate_per_hour)
+        const checked_operational = (field.operational_status ??  existingFieldById.operational_status)
+
         // Update
         const updateField = await db.field.update({
             where: {
                 field_id : field.field_id,
             },
             data: {
-                field_name : field.field_name ?? existingFieldById.field_name,
-                street : field.street ?? existingFieldById.street,
-                city : field.city ?? existingFieldById.city,
-                province : field.province  ??  existingFieldById.province,
-                postal_code : field.postal_code ??  existingFieldById.postal_code,
-                image_url : field.image_url  ??  existingFieldById.image_url,
-                rate_per_hour : field.rate_per_hour  ??  existingFieldById.rate_per_hour,
-                operational_status : field.operational_status ??  existingFieldById.operational_status,
-                owner_id : field.owner_id  ??  existingFieldById.owner_id
+                field_name : checked_field_name === "" ? existingFieldById.field_name : checked_field_name,
+                street : checked_street === "" ? existingFieldById.street : checked_street,
+                city : checked_city === "" ? existingFieldById.city : checked_city,
+                province : checked_province === "" ? existingFieldById.province : checked_province,
+                postal_code : checked_postal_code === 0 ? existingFieldById.postal_code : checked_postal_code,
+                image_url : checked_image_url === "" ? existingFieldById.image_url : checked_image_url,
+                rate_per_hour : checked_rate_per_hour === 0 ? existingFieldById.rate_per_hour : checked_rate_per_hour,
+                operational_status : checked_operational === "" ? existingFieldById.operational_status : checked_operational
             },
         })
 

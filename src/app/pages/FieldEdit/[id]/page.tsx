@@ -2,6 +2,8 @@
 import React from 'react'
 import {field} from '@/types/models'
 import Image from 'next/image'
+import FieldEditForm from '@/components/FieldEditForm'
+import Link from 'next/link'
 import FieldEdit from '@/components/FieldEdit'
 
 
@@ -22,14 +24,14 @@ const FieldInfo: React.FC<field> = ( {} ) => {
         }
     return (
         <>
-            <div className={"max-w-[1200px] mx-auto"}>
-                <div className={"flex justify-center"}>
+            <div className={"max-w-[1200px] mx-auto my-4"}>
+                <div className={"flex justify-center my-8"}>
                     {field?.image_url
                         ? <Image className={"w-[80%] rounded-lg"} src={field?.image_url} alt={`field ${field?.field_id}`} width={1200} height={200}/>
                         : <div className={"w-[80%]"}>No Image found</div>
                     }
                 </div>
-                <FieldEdit field={field} />
+                <FieldEditForm />
             </div>
         </>
     )
