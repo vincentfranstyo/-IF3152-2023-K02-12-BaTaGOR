@@ -47,4 +47,10 @@ interface booking {
     user_id: number
 }
 
-export type { field, fieldWithRatingsAndDistance, history, booking, user }
+interface fieldIncome {
+    field_id: number,
+    field_name: string,
+    field_income: number
+}
+
+export type { field, fieldWithRatingsAndDistance, history, booking, fieldIncome, user }

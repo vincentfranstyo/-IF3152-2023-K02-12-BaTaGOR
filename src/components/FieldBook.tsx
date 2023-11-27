@@ -163,7 +163,7 @@ const FieldBook: React.FC<FieldBookProps> = ({field: field}) => {
                 <button
                     type={"submit"}>
                     <Link
-                        href={`/pages/FieldInfo/${field?.field_id}`}
+                        href={`/pages/FieldInfo/${field.field_id}`}
                         className={"h-auto rounded bg-green-300" +
                             " text-black" +
                             " hover:text-white hover:bg-green-500 mx-auto px-3 py-1 w-[10%] text-center font-bold"}>

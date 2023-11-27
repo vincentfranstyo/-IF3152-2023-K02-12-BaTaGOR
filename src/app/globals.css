@@ -53,7 +53,6 @@
     radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 70%),
     radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 70%),
     radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 70%),
-    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 70%),
     radial-gradient(at 20% 20%, hsla(17, 100%, 47%, 1), transparent 70%);
   position: absolute;
   content: "";
