@@ -51,7 +51,7 @@ const Navbar = async () => {
                 ) : (	// else
                     // todo ganti ke sign in sama register option beneran
                     <div className="flex-between gap-4 md:gap-4">
-                        <Link href="/auth/register" className="outline_btn">
+                        <Link href="/auth/Register" className="outline_btn">
                             Register
                         </Link>
                         <Link href="/auth/SignIn" className="blue_btn_2">

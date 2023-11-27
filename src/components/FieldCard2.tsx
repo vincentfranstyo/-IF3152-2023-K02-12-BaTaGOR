@@ -10,9 +10,10 @@ const FieldCard2 = ({image, name, address, distance, rating, price}: {
     price: number
 }) => {
     return (
-        <div className="card_container">
-            <Image className="card_image" src={image} alt="Card Image" width={300} height={240}/>
+        <div className="card_container w-600 h-300">
+            
             <div className="px-4 py-2">
+                <Image className="card_image" src={image} alt="Card Image" width={300} height={240}/>
                 <h1 className="card_title">{name}</h1>
                 <p className="card_address">{address}</p>
             </div>
