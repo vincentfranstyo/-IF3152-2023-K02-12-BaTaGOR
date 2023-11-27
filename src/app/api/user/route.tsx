@@ -19,8 +19,8 @@ const UserSchema = z
 export async function GET(req:Request) {
     try {
         const session = await getServerSession(authOptions);
-        //const username = session?.user.username;
-        const username = "AlganiSlebew"
+        const username = session?.user.username;
+        //const username = "gigi"
 
         const user_data = await db.user.findUnique({
             where: {
