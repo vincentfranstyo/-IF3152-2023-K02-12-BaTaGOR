@@ -20,56 +20,65 @@ type Archives = {
 
 export async function GET() {
     try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
-    if (!session) throw new Error();
+    //if (!session) throw new Error();
 
-    const userAccessLevel = session.user.access_level;
-    const ID = parseInt(session.user.id,10);
-    
+    //const userAccessLevel = session?.user.access_level;
+    //const ID = session?.user.id;
+    const userAccessLevel = "Customer";
+    const ID = 8;
     let history;
     
-    if (userAccessLevel === 'Customer') {
+    if (userAccessLevel === "Customer") {
         history = await db.booking.findMany({
-        include: {
-            archives : true
-        },
         where: {
-            user_id : ID
+            user_id : Number(ID)
         }
         });
 
 
-    } else if (userAccessLevel === 'Staff') {
+    } else if (userAccessLevel === "Staff") {
         const IDFieldStaff = await db.staff.findFirst({
     where: {
-    user_id: ID,
+    user_id: Number(ID),
     },
     })
     .then((staff) => staff?.field_id || null);
 
     // Menggunakan field_id dalam query archives
     history = await db.booking.findMany({
-    include: {
-    archives: true,
-        },
     where: {
         field_id: IDFieldStaff ?? undefined,
     },
     });
 
-    } else if (userAccessLevel === 'owner') {
+    } else if (userAccessLevel === "Owner") {
         history = await db.booking.findMany({
-            include: {
-                archives : true
-            },
         });
 
     } else {
         return new NextResponse('Unauthorized', { status: 403 });
     }
+    const formattedHistoryData = history.map(booking => {
+        // Mengubah start_time
+        const startTime = new Date(booking.start_time);
+        const startTimeFormatted = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit',hour12: false });
 
-    return NextResponse.json(history);
+        // Mengubah booking_date
+        const bookingDate = new Date(booking.booking_date);
+        const bookingDateFormatted = bookingDate.toLocaleDateString();
+
+        // Mengembalikan objek dengan format yang diubah
+        return {
+        ...booking,
+        start_time: startTimeFormatted,
+        booking_date: bookingDateFormatted,
+        };
+    });
+
+
+    return NextResponse.json(formattedHistoryData);
 
     } catch (error) {
         console.error(error);
