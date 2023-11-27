@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
-
-
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import {db} from "@/db/db";
 import {hash} from "bcrypt";
 import * as z from "zod"
@@ -15,6 +15,25 @@ const UserSchema = z
         unhashed_pass: z.string().min(1, "Password is required").min(8, "Password must be at least 8 characters long"),
         access_level: z.string().min(1, "Access level must be valid")
     })
+
+export async function GET(req:Request) {
+    try {
+        const session = await getServerSession(authOptions);
+        const username = session?.user.username;
+        //const username = "gigi"
+
+        const user_data = await db.user.findUnique({
+            where: {
+                username : username
+            }
+        })
+
+        return NextResponse.json(user_data);
+    }
+    catch (error) {
+        return new NextResponse('Terjadi kesalahan', { status: 500 });
+    }
+}
 
 export async function POST(req: Request) {
     try {
