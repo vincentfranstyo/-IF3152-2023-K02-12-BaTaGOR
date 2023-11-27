@@ -41,7 +41,6 @@ const HistoryPage: React.FC = () => {
             {userData?.access_level === "Customer" && (
                 <History histories={histories}/>
             )}
-            {userData?.access_level}
             {userData?.access_level === "Staff" && (
                 <History histories={histories}/>
             )}

@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from "@/lib/utils";
 import {NextResponse} from "next/server";
-import {field} from "@/types/models";
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -14,7 +13,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
         return NextResponse.json(fields, { status: 200 });
     } catch (error: any) {
         console.error('Error fetching fields:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
+        NextResponse.json('Internal Server Error', {status: 500});
     } finally {
         await prisma.$disconnect();
     }
