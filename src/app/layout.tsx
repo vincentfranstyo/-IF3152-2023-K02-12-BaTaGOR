@@ -1,38 +1,33 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type {Metadata} from 'next'
 import './globals.css'
-import Navbar from "@/components/Navbar" 
+import Navbar from "@/components/Navbar"
 import {Toaster} from "@/components/ui/toaster"
-import Provider from "@/components/Provider" 
-
-const inter = Inter({ subsets: ['latin'] })
+import Provider from "@/components/Provider"
+import React from "react";
 
 export const metadata: Metadata = {
-  title: 'BaTaGOR',
-  description: 'Your Football Partner',
+    title: 'BaTaGOR',
+    description: 'Your Football Partner',
 }
 
-{/*Everything here will be present in all pages */}
-
-const RootLayout = ({children}: {children: React.ReactNode}) => {
-  return (
-    <html lang="en">
+const RootLayout = ({children}: { children: React.ReactNode }) => {
+    return (
+        <html lang="en">
         <body>
-          <Provider>
+        <Provider>
             <div className="main">
                 <div className='gradient'/>
             </div>
-            
             {/**Calls the navbar to be present in all the pages */}
             <main className='app'>
-                <Navbar/>   
+                <Navbar/>
                 {children}
             </main>
             <Toaster/>
-            </Provider>
+        </Provider>
         </body>
-    </html>
-  )
+        </html>
+    )
 }
 
 export default RootLayout
