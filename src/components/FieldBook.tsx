@@ -105,7 +105,7 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
         const isConsecutive = schedSelected();
     },[])
 
-    const onBookingSubmit = (values: booking) => {
+    const onBookingSubmit = async (values: booking) => {
         const response = await fetch('/api/payment', {
             method: 'POST',
             headers: {
@@ -167,6 +167,24 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
     //                 </div>
 
     console.log(schedDetails)
+    let t;
+
+    for (const s of schedDetails) {
+        if (s.disabled == 2) {
+            t = s.time;
+            break
+        }
+    }
+
+    const bookNow: booking = {
+        duration_minute: 60,
+        start_time: t,
+        field_id: field?.field_id,
+        total_price: field?.rate_per_hour,
+        booking_date: currentDate.getDate(),
+        user_id: 8,
+        booking_id: 0
+    }
     return (
         <>
             <form id="Field Order" className="max-w-[1200px] mt-3 flex flex-col gap-5 mb-5">
@@ -194,7 +212,7 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
                     </div>
                 </div>
 
-                <button
+                <button onSubmit={(event) => onBookingSubmit(bookNow)}
                     type={"submit"}>
                     <Link
                         href={`/pages/FieldInfo/${field?.field_id}`}

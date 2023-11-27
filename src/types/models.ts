@@ -53,4 +53,19 @@ interface fieldIncome {
     field_income: number
 }
 
-export type { field, fieldWithRatingsAndDistance, history, booking, fieldIncome, user }
+interface schedule {
+    id: number,
+    time: string,
+    disabled: number,
+    // 0: available
+    // 1: booked
+    // 2: selected
+}
+
+interface days {
+    date: string,
+    month: string,
+    day: string
+}
+
+export type { field, fieldWithRatingsAndDistance, history, booking, fieldIncome, user, schedule, days }

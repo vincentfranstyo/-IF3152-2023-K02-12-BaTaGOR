@@ -14,8 +14,6 @@ export default function formatDateString(dateString: string): string {
     return `${day}/${month}/${year}`;
 }
 
-export const prisma = new PrismaClient();
-
 
 export const getRandomRating = (field: field) => {
     const minRating = 3.5;
