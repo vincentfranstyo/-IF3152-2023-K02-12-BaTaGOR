@@ -22,14 +22,23 @@ Pastikan data yang dimasukkan sesuai dengan syarat masing-masing kategori data
 #### 4. Sign In
 Pencet tombol "SIGN IN" di kanan atas bila Anda belum masuk ke dalam akun Anda.
 Masukkan kredensial akun pengguna Anda, sesuai dengan data yang didaftarkan saat melakukan registrasi akun pengguna baru
-Bila sign in sukses, Anda akan diarahkan kembali ke halaman utama untuk 
+Bila sign in sukses, Anda akan diarahkan kembali ke halaman utama. 
 
-### 5. Lakukan pencarian lapagan dan pilih sebuah lapangan
+#### 5. Lakukan pencarian lapangan dan pilih sebuah lapangan
+Pilih lapangan dengan mengklik kartunya. Jika diinginkan, Anda juga dapat mencari pencarian terlebih dahulu.
+Anda akan ditampilkan informasi terkait lapangan.
 
+#### 6. Melakukan Pemesanan
+Untuk melakukan pemesanan, klik tombol "BOOK NOW". Anda akan ditampilkan informasi terkait jadwal yang tersedia.
+Pilih jadwal dengan memilih tanggal dan waktu yang tersedia, lalu klik "Confirm Booking" untuk mengkonfirmasi pemesanan.
+ 
 ### Jika anda seorang karyawan
 #### 3. Sign In
+Pencet tombol "SIGN IN" di kanan atas bila Anda belum masuk ke dalam akun Anda.
+Masukkan kredensial akun pengguna Anda, sesuai dengan data yang didaftarkan saat melakukan registrasi akun pengguna baru
+Bila sign in sukses, Anda akan diarahkan kembali ke halaman utama. 
 
-
+### 
 
 ## Daftar Use Case yang Diimplementasikan
 
@@ -52,14 +61,14 @@ Basis data yang digunakan dalam implementasi BaTaGOR adalah PostgreSQL yang di-h
 
 Berikut merupakan tabel-tabel di dalam basis data:
 
-Nama Tabel: archives
+### Nama Tabel: archives
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | history_id         | int4      | PK, NOT NULL     |
 | booking_id         | int4      | FK, NOT NULL     |
 | field_id           | int4      | FK, NOT NULL     |
 
-Nama Tabel: booking
+### Nama Tabel: booking
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | booking_id         | int4      | PK, NOT NULL     |
@@ -70,13 +79,13 @@ Nama Tabel: booking
 | user_id            | int4      | FK, NOT NULL     |
 | field_id           | int4      | FK, NOT NULL     |
 
-Nama Tabel: customer
+### Nama Tabel: customer
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | user_id            | int4      | PK, FK, NOT NULL |
 | domicile           | text      | NOT NULL         |
 
-Nama Tabel: field
+### Nama Tabel: field
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | field_id           | int4      | PK, NOT NULL     |
@@ -90,24 +99,24 @@ Nama Tabel: field
 | operational_status | text      | NOT NULL         |
 | owner_id           | int4      | FK, NOT NULL     |
 
-Nama Tabel: manage_booking
+### Nama Tabel: manage_booking
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | booking_id         | int4      | FK, PK, NOT NULL |
 | staff_id           | int4      | FK, PK, NOT NULL |
 
-Nama Tabel: owner
+### Nama Tabel: owner
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | user_id            | int4      | FK, PK, NOT NULL |
 
-Nama Tabel: staff
+### Nama Tabel: staff
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | field_id           | int4      | FK, PK, NOT NULL |
 | user_id            | int4      | FK, PK, NOT NULL |
 
-Nama Tabel: user
+### Nama Tabel: user
 | Atribut            | Tipe Data | Constraint       |
 |--------------------|-----------|------------------|
 | user_id            | int4      | PK, NOT NULL     |
