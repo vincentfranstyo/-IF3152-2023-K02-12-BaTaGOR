@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";;
 import {db} from "@/db/db";
-import {hash} from "bcrypt";
 import * as z from "zod"
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
