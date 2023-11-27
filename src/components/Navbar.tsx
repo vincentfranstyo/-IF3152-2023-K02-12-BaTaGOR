@@ -5,12 +5,10 @@ import {getServerSession} from "next-auth"
 import NavButtonSignout from "./NavButtonSignout"
 
 const Navbar = async () => {
-    // user login data status
     const session = await getServerSession(authOptions)
 
     return (
         <nav className="flex-between w-full mb-16 pt-4">
-            {/**Clickable logo: Image wraped in link */}
             <Link href="/" className="flex gap-4 flex-center">
                 <Image
                     src="/assets/icons/football.png"
@@ -37,11 +35,9 @@ const Navbar = async () => {
                         {/*/>*/}
                         <NavButtonSignout/>
 
-                        {session?.user.access_level === "customer" || session?.user.access_level === "staff" && (
-                            <Link href="/pages/History" className="blue_btn_2"> History </Link>
-                        )}
+                        <Link href="/pages/History" className="blue_btn_2"> History </Link>
                         {session?.user.access_level === "owner" && (
-                            <Link href="/pages/History" className="blue_btn_2"> Income </Link>
+                            <Link href="/pages/Income" className="blue_btn_2"> Income </Link>
                         )}
 
                         <Link href="/dashboard/admin">
