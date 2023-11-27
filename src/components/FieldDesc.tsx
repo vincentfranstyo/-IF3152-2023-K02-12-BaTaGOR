@@ -7,6 +7,8 @@ import { GiSoccerField } from "react-icons/gi";
 import { MdOutlineSchedule } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import Link from "next/link"
+import {useRouter} from "next/navigation"
+
 
 const prisma = new PrismaClient();
 
@@ -15,6 +17,26 @@ interface FieldDescProps {
 }
 
 const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
+
+    const router = useRouter();
+
+    // CRACKHOUSE ASS CODEEEEEEEEE SIALAN KAU REACT NEXTJS 
+    const idbknint = window.location.pathname.split("/").slice(-1)[0] // JELEKKKKKKKKKKK TAPI YANG PENTING BISA
+    const id = parseInt(idbknint)
+
+    console.log(id);
+    
+
+    const handleDelete = async () => {
+        const response = await fetch(`/api/fields/${id}`, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            router.push(`/`)
+        }
+    }
+
+
     return (
         <div id="FieldDesc" className={"max-w-[1200px] mt-3 flex flex-col gap-5 mb-5"}>
             <div className={"flex w-full h-auto justify-between"}>
@@ -60,7 +82,7 @@ const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
                     " hover:bg-red-600 hover:shadow-xl px-2 py-1" +
                     " items-center justify-center" +
                     " rounded border border-red-600"}>
-                    <MdDeleteOutline size={30}/>
+                    <MdDeleteOutline size={30} onClick={handleDelete}/>
                     {/*TODO: Onclick delete, isOwner: visible, the rest: hidden, tambahin property hidden di className
                      kalau
                      bukan owner*/}
