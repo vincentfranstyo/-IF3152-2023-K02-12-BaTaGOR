@@ -80,10 +80,7 @@ const RegisterForm = () => {
         if (response.ok) {
             router.push(`/pages/FieldInfo/${id}`)
         }
-
     }
-
-
 
     return (
         <div className="relative flex flex-col items-center justify-center  overflow-hidden">

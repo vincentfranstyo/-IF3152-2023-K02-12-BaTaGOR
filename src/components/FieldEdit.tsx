@@ -1,10 +1,7 @@
 "use client";
 import React, {useState} from 'react';
-import {field} from '@/types/models'
-import {PrismaClient} from '@prisma/client';
+import {field} from '@/types/models';
 import Link from "next/link"
-
-const prisma = new PrismaClient();
 
 interface FieldEditProps {
     field: field;

@@ -36,16 +36,8 @@ const FieldInfo: React.FC<FieldInfoProps> = ({params}: { params: { id: string } 
 
     return (
         <>
-            <div className={"max-w-[1200px] mx-auto"}>
-                <div className={"flex justify-center"}>
-                    {field?.image_url
-                        ?
-                        <Image className={"w-[80%] rounded-lg"} src={field?.image_url} alt={`field ${field?.field_id}`}
-                               width={1200} height={200}/>
-                        : <div className={"w-[80%]"}>No Image found</div>
-                    }
-                </div>
-                <FieldDesc field={field}/>
+            <div className={"max-w-full mx-auto"}>
+                {/*<FieldDesc field={field}/>*/}
                 <FieldEditForm />
             </div>
         </>
