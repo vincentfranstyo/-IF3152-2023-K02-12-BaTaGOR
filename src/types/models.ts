@@ -11,18 +11,10 @@ interface field {
     owner_id: number
 }
 
-interface fieldWithRatings {
+interface fieldWithRatingsAndDistance {
     field_id: number,
-    field_name: string,
-    street: string,
-    city: string,
-    province: string,
-    postal_code: number,
-    image_url: string
-    rate_per_hour: number,
-    operational_status: string,
-    owner_id: number,
-    ratings: number
+    ratings: number,
+    distance: number
 }
 
 interface history {
@@ -46,4 +38,4 @@ interface booking {
     user_id: number
 }
 
-export type { field, fieldWithRatings, history, booking }
+export type { field, fieldWithRatingsAndDistance, history, booking }

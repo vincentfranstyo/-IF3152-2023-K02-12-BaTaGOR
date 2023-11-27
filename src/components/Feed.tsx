@@ -1,14 +1,22 @@
 "use client";
 import FieldCard2 from "./FieldCard2"
-import React from 'react'
-import {field} from "@/types/models"
+import React, {useEffect, useState} from 'react'
+import {field, fieldWithRatingsAndDistance} from "@/types/models"
 import Link from 'next/link'
 
 interface FeedProps {
-    fields: field[]; // Assuming field is the type of your data
+    fields: field[];
 }
 
+
 const Feed: React.FC<FeedProps> = ( {fields} ) => {
+    const [randomRating, setRandomRating] = useState(0);
+    const [randomDistance, setRandomDistance] = useState(0);
+    useEffect(() => {
+        setRandomRating((Math.random() + 3.7) * 5);
+        setRandomDistance(Math.random() * 100);
+    }, []);
+
     return (
         <div className="feed_container">
             <section className="feed">

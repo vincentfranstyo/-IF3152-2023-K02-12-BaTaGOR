@@ -29,15 +29,15 @@ const Navbar = async () => {
                 {session?.user ? ( // todo change to session check, change profile pic
                     <div className="flex-between gap-4 md:gap-8">
                         {/**Search Bar */}
-                        <input
-                            type="text"
-                            placeholder="Search for a football field"
-                            className="search_input peer"
-                            // todo implement functioning search bar
-                        />
+                        {/*<input*/}
+                        {/*    type="text"*/}
+                        {/*    placeholder="Search for a football field"*/}
+                        {/*    className="search_input peer"*/}
+                        {/*    // todo implement functioning search bar*/}
+                        {/*/>*/}
                         <NavButtonSignout/>
 
-                        <Link href="/history" className="blue_btn_2"> History </Link>
+                        <Link href="/pages/History" className="blue_btn_2"> History </Link>
                         <Link href="/dashboard/admin">
                             <Image
                                 alt="Profile"
