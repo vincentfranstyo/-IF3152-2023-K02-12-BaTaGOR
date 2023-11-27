@@ -7,12 +7,31 @@ import {GiSoccerField} from "react-icons/gi";
 import {MdOutlineSchedule} from "react-icons/md";
 import {MdDeleteOutline} from "react-icons/md";
 import Link from "next/link"
+import {useRouter} from "next/navigation"
 
 interface FieldDescProps {
     field: field;
 }
 
 const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
+    const router = useRouter();
+
+    // CRACKHOUSE ASS CODEEEEEEEEE SIALAN KAU REACT NEXTJS
+    const idbknint = window.location.pathname.split("/").slice(-1)[0] // JELEKKKKKKKKKKK TAPI YANG PENTING BISA
+    const id = parseInt(idbknint)
+
+    console.log(id);
+
+
+    const handleDelete = async () => {
+        const response = await fetch(`/api/fields/${id}`, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            router.push(`/`)
+        }
+    }
+
     const {data: session} = useSession();
     const [userData, setUser] = useState<user>();
     useEffect(() => {
@@ -60,7 +79,9 @@ const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
             <Link href="/"
                   className={"flex h-auto shadow-sm" + " hover:bg-red-600 hover:shadow-xl px-2 py-1" + " items-center justify-center" + ` rounded border border-red-600 ${isCustomerOrStaff ? 'hidden' : ''}`}>
                 <MdDeleteOutline
-                    size={30}/> {/*TODO: Onclick delete, isOwner: visible, the rest: hidden, tambahin property hidden di className                      kalau                      bukan owner*/}
+                    size={30}  onclick={handleDelete()}/> {/*TODO: Onclick delete, isOwner: visible, the rest: hidden,
+                     tambahin property
+                     hidden di className                      kalau                      bukan owner*/}
             </Link></div>
     </div>);
 };

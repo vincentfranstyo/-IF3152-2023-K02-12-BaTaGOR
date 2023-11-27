@@ -35,7 +35,7 @@ const FormSchema = z
 // The registration form
 const RegisterForm = () => {
     // router start
-        
+
     const router = useRouter();
 
     // CRACKHOUSE ASS CODEEEEEEEEE SIALAN KAU REACT NEXTJS 
@@ -59,7 +59,7 @@ const RegisterForm = () => {
 
     // Function to call the POST function to the user database
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-        
+
         const response = await fetch(`/api/fields/${id}`, {
             method: "PUT",
             headers: {
@@ -80,10 +80,10 @@ const RegisterForm = () => {
         if (response.ok) {
             router.push(`/pages/FieldInfo/${id}`)
         }
-        
+
     }
 
-  
+
 
     return (
         <div className="relative flex flex-col items-center justify-center  overflow-hidden">
@@ -209,7 +209,7 @@ const RegisterForm = () => {
                             <Button type="submit"
                                     className="font-inter w-full px-4 py-6 tracking-wide text-white transition-colors duration-200 transform bg-orange-400 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-600 text-md">Register</Button>
                         </div>
-            
+
                     </form>
                 </Form>
             </div>
