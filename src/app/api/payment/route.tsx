@@ -7,11 +7,11 @@ export async function POST(req: Request) {
     try {
         const session = await getServerSession(authOptions)
         
-        if (!session) throw Error()
+        // if (!session) throw Error()
 
         //subquery for getting current user id by username
         const booker = await db.user.findFirst({
-            where : { username : session.user.username}
+            where : { username : session?.user.username}
         })
 
         const booker_id = Number(booker?.user_id);

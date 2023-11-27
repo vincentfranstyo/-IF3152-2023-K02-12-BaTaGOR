@@ -32,10 +32,10 @@ interface booking {
     booking_id: number,
     duration_minute: number,
     start_time: any,
-    date: any,
+    booking_date: any,
     total_price: number,
-    field_id: number,
-    user_id: number
+    user_id: number,
+    field_id: number
 }
 
 interface schedule {
@@ -49,7 +49,8 @@ interface schedule {
 
 interface days {
     date: string,
+    month: string,
     day: string
 }
 
-export type { field, fieldWithRatings, history, booking, schedule, days }
+export type { field, fieldWithRatingsAndDistance, history, booking, schedule, days }

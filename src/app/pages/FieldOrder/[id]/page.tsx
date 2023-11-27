@@ -5,25 +5,23 @@ import Image from "next/image";
 import FieldBook from "@/components/FieldBook";
 import FieldDesc from "@/components/FieldDesc";
 
-interface FieldBookProps {
+interface FieldBookPageProps {
     params : {
         id: string
     }
 }
 
 const currentDate: Date = new Date();
-const currentMonth: string = currentDate.toLocaleString('en-US', { month: 'long' });
+const currentMonth: string = currentDate.toLocaleString('en-US', { month: '2-digit' });
 const currentYear: number = currentDate.getFullYear();
 
-const FieldOrder: React.FC<FieldBookProps> = ( {params}: {params: {id: string}} ) => {
+const FieldOrder: React.FC<FieldBookPageProps> = ( {params}: {params: {id: string}} ) => {
     const [bookings, setBookings] = useState<booking[]>([]);
 
     const id = params.id;
     // console.log(id);
 
     const [field, setField] = useState<field>();
-
-    const generatedDays: days[] = [];
 
     useEffect(() => {
         fetch(`/api/fields/${id}`)
@@ -38,28 +36,13 @@ const FieldOrder: React.FC<FieldBookProps> = ( {params}: {params: {id: string}} 
             .catch(error => {
                 console.error('Error:', error);
             });
-
-            const today = new Date();
-            const twoWeeksLater = new Date();
-            twoWeeksLater.setDate(today.getDate() + 13);
-    
-            for (let date = new Date(today); date <= twoWeeksLater; date.setDate(date.getDate() + 1)) {
-                const formattedDate = date.getDate();
-                const dayOfWeek = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(date);
-    
-                console.log(formattedDate.toString())
-    
-                generatedDays.push({ date: formattedDate.toString(), day: dayOfWeek });
-            }
-
-            getBookings(params.id)
     }, [id]);
 
     const scheds: schedule[] = [
         {
             id: 1,
             time: "08.00",
-            disabled: 1
+            disabled: 0
         },
         {
             id: 2,
@@ -131,12 +114,12 @@ const FieldOrder: React.FC<FieldBookProps> = ( {params}: {params: {id: string}} 
             time: "22.00",
             disabled: 0
         },
-    ]
+    ];
     
     // console.log(id);
     const getBookings = async (id: string) => {
         try {
-            const response = await fetch(`/api/booking/${id}`);
+            const response = await fetch(`/api/fieldBooking/${id}`);
             const result = await response.json();
             console.log(result);
             setBookings(result);
@@ -145,31 +128,57 @@ const FieldOrder: React.FC<FieldBookProps> = ( {params}: {params: {id: string}} 
         }
     }
 
-    // useEffect(() => {
-    //     getBookings(params.id)
-    // },[params.id])
+    useEffect(() => {
+        getBookings(params.id)
+    },[params.id])
 
-    
+    const formattedCurrentDate = currentMonth.toString().concat('/').concat(currentDate.getDate().toString()).concat('/').concat(currentYear.toString());
+    console.log(formattedCurrentDate);
+
+    useEffect(() => {
+        for (const booking of bookings) {
+            if (String(booking.booking_date) == formattedCurrentDate) {
+                for (const schedTime of scheds) {
+                    console.log(schedTime.time)
+                    console.log(String(booking.start_time).replace(':','.'))
+                    console.log(schedTime.time === String(booking.start_time))
+                    if (schedTime.time == String(booking.start_time)) {
+                        console.log('uwuwuw')
+                        schedTime.disabled = 1;
+                        console.log(schedTime.disabled)
+                    }
+                }
+            }
+        }
+    }, [scheds])
+    console.log(scheds)
+
+    // const [days, setDays] = useState<days[]>([]);
+
     // useEffect(() => {
     //     const today = new Date();
     //     const twoWeeksLater = new Date();
     //     twoWeeksLater.setDate(today.getDate() + 13);
 
+    //     const generatedDays: days[] = [];
+
     //     for (let date = new Date(today); date <= twoWeeksLater; date.setDate(date.getDate() + 1)) {
     //         const formattedDate = date.getDate();
-    //         const dayOfWeek = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(date);
+    //         const formattedMonth = date.getMonth();
+    //         // console.log(formattedDate)
+    //         const dayOfWeek = new Intl.DateTimeFormat('en-US').format(date);
 
-    //         console.log(formattedDate.toString())
-
-    //         generatedDays.push({ date: formattedDate.toString(), day: dayOfWeek });
+    //         generatedDays.push({ date: formattedDate.toString(), month: formattedMonth.toString(), day: dayOfWeek });
     //     }
-    // }, [])
+
+    //     setDays(generatedDays);
+    // }, []);
 
     // for (const selectedDay of generatedDays) {
     //         for (const booking of bookings) {
-    //             if (selectedDay.date === String(booking.booking_date).slice(0,2)) {
-    //                 const formattedTime = String(booking.start_time).replace(':','.');
-    //                 for (const sched of scheds) {
+    //             if (selectedDay.date === String(booking.date).slice(8)) {
+    //                 const formattedTime = String(booking.start_time).slice(0,5).replace(':','.');
+    //                 for (const sched of schedDetails) {
     //                     if (sched.time === formattedTime) {
     //                         sched.disabled = 1;
     //                     }
@@ -177,12 +186,33 @@ const FieldOrder: React.FC<FieldBookProps> = ( {params}: {params: {id: string}} 
     //             }
     //         }
     //     }
+    // useEffect(() => {
+    //     console.log(bookings)
+    //     for (const selectedDay of days) {
+    //         for (const booking of bookings) {
+    //             console.log(booking.booking_date)
+    //             console.log(String(booking.booking_date).slice(3,5))
+    //             console.log(String(booking.booking_date).slice(0,2))
+    //             console.log(selectedDay.date)
+    //             console.log((Number(selectedDay.month).toString))
+    //             if (selectedDay.date === String(booking.booking_date).slice(3,5) && Number(selectedDay.month).toString() === String(booking.booking_date).slice(0,2)) {
+    //                 const time = String(booking.start_time).replace(':','.');
+    //                 for (const schedTime of scheds) {
+    //                     if (schedTime.time === time) {
+    //                         schedTime.disabled = 1;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }, [bookings])
+    
 
     return (
         <>
             <div className={"max-w-[1200px] mx-auto"}>
                 <FieldDesc field={field} />
-                <FieldBook field={field} schedule={scheds} generatedDays={generatedDays} /> 
+                <FieldBook field={field} scheds={scheds}/> 
             </div>
         </>
     )

@@ -3,12 +3,11 @@ import {twMerge} from "tailwind-merge"
 import {field} from "@/types/models"
 import {PrismaClient} from "@prisma/client"
 
+export const prisma = new PrismaClient()
+
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
-
-export const prisma = new PrismaClient();
-
 
 export const getRandomRating = (field: field) => {
     const minRating = 3.5;
