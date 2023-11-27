@@ -1,102 +1,100 @@
-  generator client {
-    provider = "prisma-client-js"
-  }
+generator client {
+  provider = "prisma-client-js"
+}
 
-  datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
-  }
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model archives {
-    history_id Int  @default(autoincrement())
-    booking_id Int
-    field_id   Int
-    booking    booking @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade)
-    field      field   @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model archives {
+  history_id Int     @default(autoincrement())
+  booking_id Int
+  field_id   Int
+  booking    booking @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade)
 
-    @@id([history_id, booking_id, field_id])
-  }
+  @@id([history_id, booking_id, field_id])
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model booking {
-    booking_id      Int           @id @unique @default(autoincrement())
-    duration_minute Int
-    start_time      DateTime         @db.Time(6)
-    booking_date    DateTime         @db.Date
-    total_price     Int
-    customer_id     Int
-    field_id        Int
-    archives        archives[]
-    customer        customer         @relation(fields: [customer_id], references: [user_id], onDelete: Cascade)
-    field           field            @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
-    manage_booking  manage_booking[]
-  }
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model booking {
+  booking_id      Int              @id @unique @default(autoincrement())
+  duration_minute Int
+  start_time      DateTime         @db.Time(6)
+  booking_date    DateTime         @db.Date
+  total_price     Int
+  user_id         Int
+  field_id        Int
+  archives        archives[]
+  field           field            @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
+  user            user             @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  manage_booking  manage_booking[]
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model customer {
-    user_id  Int    @id @unique @default(autoincrement())
-    domicile String?
-    booking  booking[]
-    user     user      @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
-  }
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model customer {
+  user_id  Int     @id @unique @default(autoincrement())
+  domicile String?
+  user     user    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model field {
-    field_id           Int     @id @unique @default(autoincrement())
-    field_name         String
-    street             String
-    city               String
-    province           String
-    postal_code        Int
-    image_url          String
-    rate_per_hour      Int
-    operational_status String
-    owner_id           Int?
-    archives           archives[]
-    booking            booking[]
-    owner              owner?     @relation(fields: [owner_id], references: [user_id], onDelete: Cascade)
-    staff              staff[]
-  }
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model field {
+  field_id           Int       @id @unique @default(autoincrement())
+  field_name         String
+  street             String
+  city               String
+  province           String
+  postal_code        Int
+  image_url          String?
+  rate_per_hour      Int
+  operational_status String
+  owner_id           Int?
+  booking            booking[]
+  owner              owner?    @relation(fields: [owner_id], references: [user_id], onDelete: Cascade)
+  staff              staff[]
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model manage_booking {
-    booking_id Int
-    staff_id   Int
-    booking    booking @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade)
-    staff      staff   @relation(fields: [staff_id], references: [user_id], onDelete: Cascade)
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model manage_booking {
+  booking_id Int
+  staff_id   Int
+  booking    booking @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade)
+  staff      user    @relation(fields: [staff_id], references: [user_id], onDelete: Cascade)
 
-    @@id([booking_id, staff_id])
-  }
+  @@id([booking_id, staff_id])
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model owner {
-    user_id Int  @id @unique @default(autoincrement())
-    field   field[]
-    user    user    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
-  }
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model owner {
+  user_id Int     @id @unique @default(autoincrement())
+  field   field[]
+  user    user    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model staff {
-    user_id        Int           @unique
-    field_id       Int           @map("field-id")
-    manage_booking manage_booking[]
-    field          field            @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
-    user           user             @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model staff {
+  field_id Int   @map("field-id")
+  user_id  Int
+  field    field @relation(fields: [field_id], references: [field_id], onDelete: Cascade)
+  user     user  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 
-    @@id([user_id, field_id])
-  }
+  @@id([field_id, user_id])
+}
 
-  /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-  model user {
-    user_id      Int    @id @unique @default(autoincrement())
-    username     String    @unique
-    name         String
-    phone_num    String
-    email        String
-    hashed_pass  String
-    access_level String
-    customer     customer?
-    owner        owner?
-    staff        staff?
-  }
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model user {
+  user_id        Int              @id @unique @default(autoincrement())
+  username       String           @unique
+  name           String
+  phone_num      String
+  email          String
+  hashed_pass    String
+  access_level   String
+  booking        booking[]
+  customer       customer?
+  manage_booking manage_booking[]
+  owner          owner?
+  staff          staff[]
+}
