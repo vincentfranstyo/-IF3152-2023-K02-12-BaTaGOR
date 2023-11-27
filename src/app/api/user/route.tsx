@@ -21,7 +21,6 @@ export async function GET() {
 
     } catch (error: any){
         console.error(error)
-
     }
 }
 

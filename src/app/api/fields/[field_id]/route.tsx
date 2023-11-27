@@ -12,7 +12,7 @@ export async function GET(req: NextApiRequest, context : { params : {field_id : 
 
         const field = await prisma.field.findFirst({
             where: {
-                field_id: Number(field_id), // convert the id to a number
+                field_id: Number(field_id)
             },
         });
 

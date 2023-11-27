@@ -7,8 +7,9 @@ import {useSession} from "next-auth/react";
 import React, {useEffect, useState} from "react";
 
 const Home: React.FC = () => {
-    const { data: session } = useSession();
+    const {data: session} = useSession();
     const [fields, setFields] = useState<field[]>([]);
+    console.log(session)
 
     useEffect(() => {
         fetch('/api/fields')
@@ -31,7 +32,7 @@ const Home: React.FC = () => {
                 <div>
                     <h1 className="headline_text text-left blue_gradient pb-4">
                         Welcome, {session?.user.username}
-                        <br />
+                        <br/>
                     </h1>
                     {/*<Link href="/api/field/route">*/}
                     {/*    <button className="bg-white font-bold py-2 px-1 mx-auto border">*/}
@@ -52,7 +53,7 @@ const Home: React.FC = () => {
                     </h2>
                 </div>
             )}
-            <Feed fields={fields} />
+            <Feed fields={fields}/>
         </section>
     );
 };

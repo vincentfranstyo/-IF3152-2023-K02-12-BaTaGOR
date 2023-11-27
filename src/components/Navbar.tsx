@@ -26,7 +26,7 @@ const Navbar = async () => {
 
             {/*Desktop Navigation */}
             <div className="sm:flex hidden">
-                {session?.user ? ( // todo change to session check, change profile pic
+                {session?.user ? (
                     <div className="flex-between gap-4 md:gap-8">
                         {/**Search Bar */}
                         {/*<input*/}
@@ -37,7 +37,13 @@ const Navbar = async () => {
                         {/*/>*/}
                         <NavButtonSignout/>
 
-                        <Link href="/pages/History" className="blue_btn_2"> History </Link>
+                        {session?.user.access_level === "customer" || session?.user.access_level === "staff" && (
+                            <Link href="/pages/History" className="blue_btn_2"> History </Link>
+                        )}
+                        {session?.user.access_level === "owner" && (
+                            <Link href="/pages/History" className="blue_btn_2"> Income </Link>
+                        )}
+
                         <Link href="/dashboard/admin">
                             <Image
                                 alt="Profile" src="/assets/images/profile_default.webp"
