@@ -4,10 +4,11 @@ import {field} from '@/types/models'
 import Image from 'next/image'
 import FieldDesc from '@/components/FieldDesc'
 import Link from 'next/link'
+import {useSession} from "next-auth/react";
 
 interface FieldInfoProps {
     params: {
-        id: string,
+        id: string
     }
 }
 
@@ -45,7 +46,7 @@ const FieldInfo: React.FC<FieldInfoProps> = ({params}: { params: { id: string } 
                         : <div className={"w-[80%]"}>No Image found</div>
                     }
                 </div>
-                <FieldDesc field={field} />
+                <FieldDesc field={field}/>
                 <div className={"border border-black"}/>
                 <div className={"w-full h-12 flex items-center bg-blue-700 mt-5 mb-10 rounded"}>
                     <div className={"w-[75%] flex font-semibold ml-5 text-white"}>
