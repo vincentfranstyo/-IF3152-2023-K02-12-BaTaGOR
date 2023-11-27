@@ -24,13 +24,13 @@ export async function GET(req: Request) {
     try {
 
         // auth
-        /* const session = await getServerSession(authOptions)
+        const session = await getServerSession(authOptions)
 
         if (!session) throw Error()
 
         if (session.user.username !== "admin") {
             return NextResponse.json({field: null, message: "Forbidden"}, {status: 403})
-        } */
+        }
 
         // Aggregate total income
         const field_incomes = await db.booking.groupBy({

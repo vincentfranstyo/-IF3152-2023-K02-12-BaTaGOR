@@ -38,7 +38,22 @@ Pencet tombol "SIGN IN" di kanan atas bila Anda belum masuk ke dalam akun Anda.
 Masukkan kredensial akun pengguna Anda, sesuai dengan data yang didaftarkan saat melakukan registrasi akun pengguna baru
 Bila sign in sukses, Anda akan diarahkan kembali ke halaman utama. 
 
-### 
+### Jika anda seorang admin
+#### 3. Sign In
+Pencet tombol "SIGN IN" di kanan atas bila Anda belum masuk ke dalam akun Anda.
+Masukkan kredensial akun pengguna Anda. Untuk admin, username yang digunakan adalah "admin", dengan password "admin".
+Bila sign in sukses, Anda akan diarahkan kembali ke halaman utama. 
+
+#### 4. Menambahkan Lapangan
+
+
+#### 5. Mengubah Data dan Menghapus Lapangan
+Klik salah satu lapangan untuk melihat informasi lebih detail terkaitnya.
+Jika Anda ingin menghapus lapangan, klik gambar tong sampah. 
+Sementara itu, jika Anda ingin mengedit lapangan, klik tulisan "Edit". Masukkan data baru ke input field untuk atribut yang hendak diedit - jika ada atribut yang tidak ingin diedit, cukup kosongkan input field.
+
+#### 6. Melihat Pemasukan
+Klik tombol "Income" di kanan atas untuk melihat total pemasukan untuk seluruh lapangan yang dimiliki.
 
 ## Daftar Use Case yang Diimplementasikan
 
@@ -47,8 +62,8 @@ Bila sign in sukses, Anda akan diarahkan kembali ke halaman utama.
 | U01           | Menyunting Data Lapangan           | 18221102 Salman Ma'arif Achsien | -          |                        |
 | U02           | Menghapus Lapangan                 | 18221102 Salman Ma'arif Achsien | -          |                        |
 | U03           | Menambah Lapangan                  | 18221100 Vincent Franstyo       | -          |                        |
-| U04, U05      | Melihat Informasi Lapangan         | 18221100 Vincent Franstyo       | -          |                        |
-| U06           | Register                           | 18221148 Kean Nafis Santang     | Digabung   |                        |
+| U04, U05      | Melihat Informasi Lapangan         | 18221100 Vincent Franstyo       | Digabung   |                        |
+| U06           | Register                           | 18221148 Kean Nafis Santang     | -          |                        |
 | U07           | Login                              | 18221148 Kean Nafis Santang     | -          |                        |
 | U08           | Memesan Lapangan                   | 18221108 Farhan Algani Putra    | -          |                        |
 | U09           | Mengubah Detail Pemesanan Lapangan | 18221108 Farhan Algani Putra    | -          |                        |
