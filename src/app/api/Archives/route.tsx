@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";;
 import {db} from "@/db/db";
 import {hash} from "bcrypt";
 import * as z from "zod"
-import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import { authOptions } from "@/lib/auth";
 import { NextApiRequest } from "next";
 
@@ -20,12 +20,13 @@ type Archives = {
 
 export async function GET() {
     try {
-    const session = await getServerSession(authOptions);
+    const session = await useSession();
 
     //if (!session) throw new Error();
 
     //const userAccessLevel = session?.user.access_level;
     //const ID = session?.user.id;
+    
     const userAccessLevel = "Customer";
     const ID = 8;
     let history;
