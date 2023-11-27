@@ -16,7 +16,7 @@ const UserSchema = z
         access_level: z.string().min(1, "Access level must be valid")
     })
 
-export async function GET(req:Request) {
+export async function GET() {
     try {
         const session = await getServerSession(authOptions);
         const username = session?.user.username;

@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from 'react';
-import {field} from '@/types/models';
+import React, {useEffect, useState} from 'react';
+import {field, user} from '@/types/models';
 import { useSession } from "next-auth/react"
 import { CiLocationOn, CiStar, CiPhone } from "react-icons/ci";
 import { GiSoccerField } from "react-icons/gi";
@@ -14,6 +14,20 @@ interface FieldDescProps {
 
 const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
     const {data: session} = useSession();
+    const [userData, setUser] = useState<user>();
+
+    useEffect(() => {
+        fetch('/api/user')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                setUser(data);
+            })
+            .catch(err => {
+                console.error('Error:', err);
+            })
+    },[]);
 
     if (!session) {
         return <p>Loading...</p>;
@@ -24,8 +38,8 @@ const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
     }
 
     const isCustomerOrStaff: boolean =
-        session.user.access_level?.toLowerCase() === "customer" ||
-        session.user.access_level?.toLowerCase() === "staff";
+        userData?.access_level === "Customer" ||
+        userData?.access_level === "Staff";
 
 
     return (
@@ -33,7 +47,6 @@ const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
             <div className={"flex w-full h-auto justify-between"}>
                 <div id={"title"} className={"flex font-extrabold text-3xl"}>
                     {field?.field_name}
-                    {session.user.access_level}
                 </div>
                 <Link
                     id={"edit"}

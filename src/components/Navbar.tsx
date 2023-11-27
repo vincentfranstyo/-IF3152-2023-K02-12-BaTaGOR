@@ -1,11 +1,26 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
-import {authOptions} from "@/lib/auth"
-import {getServerSession} from "next-auth"
+import { useSession } from "next-auth/react"
 import NavButtonSignout from "./NavButtonSignout"
+import {useEffect, useState} from "react";
+import {user} from "@/types/models";
 
-const Navbar = async () => {
-    const session = await getServerSession(authOptions)
+const Navbar = () => {
+    const {data: session} = useSession();
+    const [userData, setUser] = useState<user>();
+    useEffect(() => {
+        fetch('/api/user')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                setUser(data);
+            })
+            .catch(err => {
+                console.error('Error:', err);
+            })
+    },[]);
 
     return (
         <nav className="flex-between w-full mb-16 pt-4">
@@ -34,10 +49,9 @@ const Navbar = async () => {
                         {/*    // todo implement functioning search bar*/}
                         {/*/>*/}
                         <NavButtonSignout/>
-
                         <Link href="/pages/History" className="blue_btn_2"> History </Link>
-                        {session?.user.access_level === "owner" && (
-                            <Link href="/pages/Income" className="blue_btn_2"> Income </Link>
+                        {userData?.access_level === "Owner" && (
+                            <Link href="/pages/Income" className="yellow_btn_2"> Income </Link>
                         )}
 
                         <Link href="/dashboard/admin">

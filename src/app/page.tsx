@@ -6,10 +6,11 @@ import {useSession} from "next-auth/react";
 
 import React, {useEffect, useState} from "react";
 
+
 const Home: React.FC = () => {
     const {data: session} = useSession();
     const [fields, setFields] = useState<field[]>([]);
-    console.log(session)
+    // console.log(session)
 
     useEffect(() => {
         fetch('/api/fields')
