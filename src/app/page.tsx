@@ -6,6 +6,7 @@ import {useSession} from "next-auth/react";
 
 import React, {useEffect, useState} from "react";
 import {IoAddCircle} from "react-icons/io5";
+import Link from "next/link";
 
 const Home: React.FC = () => {
     const {data: session} = useSession();
@@ -21,7 +22,7 @@ const Home: React.FC = () => {
             .catch(err => {
                 console.error('Error:', err);
             })
-    },[]);
+    }, []);
 
     const [fields, setFields] = useState<field[]>([]);
     // console.log(session)
@@ -71,11 +72,13 @@ const Home: React.FC = () => {
                 )}
                 <div className="feed_container">
                     {userData?.access_level === "Owner" && (
-                        <button className={"w-full items-center justify-center" +
-                        " border-none flex flex-col"}>
-                        <IoAddCircle size={50}/>
-                    </button>
-                        )
+                        <Link href={"/pages/FieldAdd"}>
+                            <button className={"w-full items-center justify-center" +
+                                " border-none flex flex-col"}>
+                                <IoAddCircle size={50}/>
+                            </button>
+                        </Link>
+                    )
                     }
                     <Feed fields={fields}/>
                 </div>
