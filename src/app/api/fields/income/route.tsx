@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";;
 import {db} from "@/db/db";
-import {hash} from "bcrypt";
 import * as z from "zod"
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -20,44 +19,50 @@ const FieldSchema = z
     owner_id: z.number().int().optional(),
 })
 
-export async function GET(req: Request, context : { params : {field_id : string}}) {
+export async function GET(req: Request) {
 
     try {
 
         // auth
-        const session = await getServerSession(authOptions)
+        /* const session = await getServerSession(authOptions)
 
         if (!session) throw Error()
 
         if (session.user.username !== "admin") {
             return NextResponse.json({field: null, message: "Forbidden"}, {status: 403})
-        }
-
-        // Parse input
-        const field_id = parseInt(context.params.field_id)
-
-        // Check for field in db
-        const existingFieldById = await db.field.findUnique({
-            where: {field_id: field_id }
-        })
-
-        if (existingFieldById === null) {
-            return NextResponse.json({ field: null, message: "This field does not exist" }, { status: 404 })
-        }
+        } */
 
         // Aggregate total income
-        const total_income = await db.booking.aggregate({
+        const field_incomes = await db.booking.groupBy({
+            by: ["field_id"],
             _sum : {
                 total_price: true
             },
-            where: {
-                field_id: {
-                    equals: field_id
-                }
+            orderBy : {
+                field_id : 'asc'
             }
         })
 
-        return NextResponse.json({field_id : field_id, field_name : existingFieldById.field_name, total_income : total_income},{status : 200})
+        const field_names = await db.field.findMany({
+            select: {
+                field_id: true,
+                field_name: true
+            },
+            orderBy: {
+                field_id : 'asc'
+            }
+        })
+
+        const join = field_names.map(nameObj => {
+            const incomeObj = field_incomes.find(s => s.field_id === nameObj.field_id);
+            return {
+                field_id: nameObj.field_id,
+                field_name: nameObj.field_name,
+                field_income: incomeObj ? incomeObj._sum.total_price : 0 
+            };
+        });
+
+        return NextResponse.json({fields_incomes : join},{status : 200})
 
     } catch (error) {
         console.error("Error", error)

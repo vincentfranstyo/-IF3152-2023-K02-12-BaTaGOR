@@ -53,7 +53,6 @@
     radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 70%),
     radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 70%),
     radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 70%),
-    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 70%),
     radial-gradient(at 20% 20%, hsla(17, 100%, 47%, 1), transparent 70%);
   position: absolute;
   content: "";
@@ -73,6 +72,10 @@
 .black_btn {
   @apply rounded-full border border-black bg-black py-2.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
 }
+.yellow_btn {
+  @apply rounded-full border border-black bg-yellow-200 py-2.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+}
+
 
 .purple_btn {
   @apply mx-2 rounded-full border border-black bg-indigo-500 py-2.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
@@ -84,6 +87,10 @@
 
 .blue_btn_2 {
   @apply mr-4 rounded-full border border-black bg-blue-500 py-2.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+}
+
+.yellow_btn_2 {
+  @apply mr-4 rounded-full border border-black bg-yellow-300 py-2.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
 }
 
 .outline_btn {

@@ -1,16 +1,29 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
-import {authOptions} from "@/lib/auth"
-import {getServerSession} from "next-auth"
+import { useSession } from "next-auth/react"
 import NavButtonSignout from "./NavButtonSignout"
+import {useEffect, useState} from "react";
+import {user} from "@/types/models";
 
-const Navbar = async () => {
-    // user login data status
-    const session = await getServerSession(authOptions)
+const Navbar = () => {
+    const {data: session} = useSession();
+    const [userData, setUser] = useState<user>();
+    useEffect(() => {
+        fetch('/api/user')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                setUser(data);
+            })
+            .catch(err => {
+                console.error('Error:', err);
+            })
+    },[]);
 
     return (
         <nav className="flex-between w-full mb-16 pt-4">
-            {/**Clickable logo: Image wraped in link */}
             <Link href="/" className="flex gap-4 flex-center">
                 <Image
                     src="/assets/icons/football.png"
@@ -26,7 +39,7 @@ const Navbar = async () => {
 
             {/*Desktop Navigation */}
             <div className="sm:flex hidden">
-                {session?.user ? ( // todo change to session check, change profile pic
+                {session?.user ? (
                     <div className="flex-between gap-4 md:gap-8">
                         {/**Search Bar */}
                         {/*<input*/}
@@ -36,12 +49,14 @@ const Navbar = async () => {
                         {/*    // todo implement functioning search bar*/}
                         {/*/>*/}
                         <NavButtonSignout/>
-
                         <Link href="/pages/History" className="blue_btn_2"> History </Link>
+                        {userData?.access_level === "Owner" && (
+                            <Link href="/pages/Income" className="yellow_btn_2">Income </Link>
+                        )}
+
                         <Link href="/dashboard/admin">
                             <Image
-                                alt="Profile"
-                                src="/assets/images/profile_default.webp"
+                                alt="Profile" src="/assets/images/profile_default.webp"
                                 width={40}
                                 height={40}
                                 className="rounded-full"
@@ -51,7 +66,7 @@ const Navbar = async () => {
                 ) : (	// else
                     // todo ganti ke sign in sama register option beneran
                     <div className="flex-between gap-4 md:gap-4">
-                        <Link href="/auth/register" className="outline_btn">
+                        <Link href="/auth/Register" className="outline_btn">
                             Register
                         </Link>
                         <Link href="/auth/SignIn" className="blue_btn_2">
