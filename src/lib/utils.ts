@@ -7,6 +7,11 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
 
+export default function formatDateString(dateString: string): string {
+    const [month, day, year] = dateString.split("/");
+    return `${day}/${month}/${year}`;
+}
+
 export const prisma = new PrismaClient();
 
 

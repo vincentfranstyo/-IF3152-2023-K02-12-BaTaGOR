@@ -1,7 +1,7 @@
 "use client";
 import FieldCard2 from "./FieldCard2"
 import React, {useEffect, useState} from 'react'
-import {field, fieldWithRatingsAndDistance} from "@/types/models"
+import {field} from "@/types/models"
 import Link from 'next/link'
 
 interface FeedProps {
@@ -9,17 +9,10 @@ interface FeedProps {
 }
 
 
-const Feed: React.FC<FeedProps> = ( {fields} ) => {
-    const [randomRating, setRandomRating] = useState(0);
-    const [randomDistance, setRandomDistance] = useState(0);
-    useEffect(() => {
-        setRandomRating((Math.random() + 3.7) * 5);
-        setRandomDistance(Math.random() * 100);
-    }, []);
-
+const Feed: React.FC<FeedProps> = ({fields}) => {
     return (
         <div className="feed_container">
-            <section className="feed">
+            <section className="feed flex flex-col gap-2">
                 {fields.map(field => (
                     <Link key={field?.field_id} href={`/pages/FieldInfo/${field?.field_id}`} className={"hidden" +
                         " lg:flex" +
