@@ -16,6 +16,15 @@ const UserSchema = z
         access_level: z.string().min(1, "Access level must be valid")
     })
 
+export async function GET() {
+    try{
+
+    } catch (error: any){
+        console.error(error)
+
+    }
+}
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();

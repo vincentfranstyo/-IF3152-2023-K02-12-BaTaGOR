@@ -40,8 +40,7 @@ const Navbar = async () => {
                         <Link href="/pages/History" className="blue_btn_2"> History </Link>
                         <Link href="/dashboard/admin">
                             <Image
-                                alt="Profile"
-                                src="/assets/images/profile_default.webp"
+                                alt="Profile" src="/assets/images/profile_default.webp"
                                 width={40}
                                 height={40}
                                 className="rounded-full"

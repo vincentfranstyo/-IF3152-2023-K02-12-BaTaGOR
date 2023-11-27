@@ -5,7 +5,6 @@ import Feed from "../components/Feed";
 import {useSession} from "next-auth/react";
 
 import React, {useEffect, useState} from "react";
-import Link from "next/link";
 
 const Home: React.FC = () => {
     const { data: session } = useSession();

@@ -1,14 +1,13 @@
 "use client";
 import React, { useState } from 'react';
 import {field} from '@/types/models'
-import {PrismaClient} from '@prisma/client';
+import {prisma} from '@/lib/utils';
 import { CiLocationOn, CiStar, CiPhone } from "react-icons/ci";
 import { GiSoccerField } from "react-icons/gi";
 import { MdOutlineSchedule } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import Link from "next/link"
 
-const prisma = new PrismaClient();
 
 interface FieldDescProps {
     field: field;
@@ -47,7 +46,7 @@ const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
             </div>
             <div id={"phoneNumber"} className={"flex gap-5"}>
                 <CiPhone size={30} />
-                <div className={"font-[14px]"}>+654676346543</div>
+                <div className={"font-[14px]"}>+624676346543</div>
             {/*    TODO : valuenya di get dari staff yang corresponding dengan si field*/}
             </div>
             {/*TODO: ganti phoneNumber*/}
