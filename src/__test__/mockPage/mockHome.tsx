@@ -27,7 +27,6 @@ const MockHome = ({userState, username}: {userState: Boolean, username: String})
         
       )}
 
-      <Feed />
 
       
     </section>
