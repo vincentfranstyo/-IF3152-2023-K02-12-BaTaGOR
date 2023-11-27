@@ -38,4 +38,18 @@ interface booking {
     user_id: number
 }
 
-export type { field, fieldWithRatingsAndDistance, history, booking }
+interface schedule {
+    id: number,
+    time: string,
+    disabled: number,
+    // 0: available
+    // 1: booked
+    // 2: selected
+}
+
+interface days {
+    date: string,
+    day: string
+}
+
+export type { field, fieldWithRatings, history, booking, schedule, days }
