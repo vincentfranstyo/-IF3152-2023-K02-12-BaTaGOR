@@ -7,6 +7,20 @@ import {db} from "@/db/db";
 import {hash} from "bcrypt";
 import * as z from "zod"
 
+
+type Field = {
+    field_id: number;
+    field_name?: string;
+    street?: string;
+    city?: string;
+    province?: string;
+    postal_code?: number;
+    image_url?: string;
+    rate_per_hour?: number;
+    operational_status?: string;
+    owner_id?: number;
+  };
+
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     try {
         const fields = await prisma.field.findMany({
