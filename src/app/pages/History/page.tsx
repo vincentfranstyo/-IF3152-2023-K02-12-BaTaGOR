@@ -103,6 +103,7 @@ const HistoryPage: React.FC = () => {
             <section className="w-full flex-start flex-col mx-16">
                 <History histories={histories} userRole={"customer"} />
             </section>
+            )
         </>
     )
 }

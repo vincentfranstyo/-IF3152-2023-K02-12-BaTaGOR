@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";;
 import {db} from "@/db/db";
 import {hash} from "bcrypt";
 import * as z from "zod"
-import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import { authOptions } from "@/lib/auth";
 import { NextApiRequest } from "next";
+import { getServerSession } from "next-auth";
 
 
 type Archives = {
@@ -20,14 +21,26 @@ type Archives = {
 
 export async function GET() {
     try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions)
 
     //if (!session) throw new Error();
+    const userData = await db.user.findFirst({
+        where: {
+        username : session?.user.username
+        }
+        })
+    /* const userData = {
+        "user_id": 8,
+        "username": "gigi",
+        "name": "gigigigi",
+        "phone_num": "08123456789",
+        "email": "a@gmail.com",
+        "hashed_pass": "$2b$10$R04df8Rvtx8eKbvR3jg4gOQ.966zcZ3kjG8h58LgR9a5vJ5P4W4TK",
+        "access_level": "Customer"
+    } */
 
-    //const userAccessLevel = session?.user.access_level;
-    //const ID = session?.user.id;
-    const userAccessLevel = "Customer";
-    const ID = 8;
+    const userAccessLevel  = userData?.access_level;
+    const ID = userData?.user_id;
     let history;
     
     if (userAccessLevel === "Customer") {

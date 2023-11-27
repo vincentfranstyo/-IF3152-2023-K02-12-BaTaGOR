@@ -6,7 +6,7 @@ import FieldEdit from '@/components/FieldEdit'
 import Link from 'next/link'
 
 
-const FieldInfo: React.FC<field> = ( {params} ) => {
+const FieldInfo: React.FC<field> = ( {} ) => {
     // TODO: Params = data field yang di get dari DB sesuai ID, feel free klo ga dipake
     const field: (field) =
         {
