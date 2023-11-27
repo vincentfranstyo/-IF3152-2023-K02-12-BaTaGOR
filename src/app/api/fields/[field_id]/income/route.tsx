@@ -57,7 +57,7 @@ export async function GET(req: Request, context : { params : {field_id : string}
             }
         })
 
-        return NextResponse.json({field_id : field_id, total_income : total_income},{status : 200})
+        return NextResponse.json({field_id : field_id, field_name : existingFieldById.field_name, total_income : total_income},{status : 200})
 
     } catch (error) {
         console.error("Error", error)
