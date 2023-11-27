@@ -4,7 +4,6 @@ import {field} from '@/types/models'
 import Image from 'next/image'
 import FieldDesc from '@/components/FieldDesc'
 import Link from 'next/link'
-import {useSession} from "next-auth/react";
 
 interface FieldInfoProps {
     params: {

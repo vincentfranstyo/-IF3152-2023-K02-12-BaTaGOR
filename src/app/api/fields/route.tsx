@@ -6,6 +6,20 @@ import {authOptions} from "@/lib/auth";
 import {db} from "@/db/db"
 import * as z from "zod"
 
+
+type Field = {
+    field_id: number;
+    field_name?: string;
+    street?: string;
+    city?: string;
+    province?: string;
+    postal_code?: number;
+    image_url?: string;
+    rate_per_hour?: number;
+    operational_status?: string;
+    owner_id?: number;
+  };
+
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     try {
         const fields = await prisma.field.findMany({
@@ -17,7 +31,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
         return NextResponse.json(fields, {status: 200});
     } catch (error: any) {
         console.error('Error fetching fields:', error.message);
-        NextResponse.json('Internal Server Error', {status: 500});
+        return NextResponse.json('Internal Server Error' , {status: 500});
     } finally {
         await prisma.$disconnect();
     }

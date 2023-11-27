@@ -1,8 +1,7 @@
 "use client"
 import React, {useEffect, useState} from 'react'
 import {field} from '@/types/models'
-import FieldEditForm from "@/components/FieldEditForm"
-import FieldDesc from "@/components/FieldDesc"
+import FieldAddForm from "@/components/FieldAddForm"
 interface FieldInfoProps {
     params: {
         id: string
@@ -35,8 +34,7 @@ const FieldEdit: React.FC<FieldInfoProps> = ({params}: { params: { id: string } 
     return (
         <>
             <div className={"max-w-full mx-auto"}>
-                <FieldDesc field={field}/>
-                <FieldEditForm />
+                <FieldAddForm />
             </div>
         </>
     )
