@@ -1,7 +1,6 @@
 "use client";
 
 import {useState, useEffect} from "react";
-import FieldCard from "./FieldCard"
 import FieldCard2 from "./FieldCard2"
 
 const Feed = () => {
