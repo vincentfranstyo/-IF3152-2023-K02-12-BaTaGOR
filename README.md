@@ -57,18 +57,22 @@ Klik tombol "Income" di kanan atas untuk melihat total pemasukan untuk seluruh l
 
 ## Daftar Use Case yang Diimplementasikan
 
-| Kode Use Case | Judul Use Case                     | NIM dan Nama Penanggung Jawab   | Keterangan | Tangkapan Layar Gambar |
-|---------------|------------------------------------|---------------------------------|------------|------------------------|
-| U01           | Menyunting Data Lapangan           | 18221102 Salman Ma'arif Achsien | -          |                        |
-| U02           | Menghapus Lapangan                 | 18221102 Salman Ma'arif Achsien | -          |                        |
-| U03           | Menambah Lapangan                  | 18221100 Vincent Franstyo       | -          |                        |
-| U04, U05      | Melihat Informasi Lapangan         | 18221100 Vincent Franstyo       | Digabung   |                        |
-| U06           | Register                           | 18221148 Kean Nafis Santang     | -          |                        |
-| U07           | Login                              | 18221148 Kean Nafis Santang     | -          |                        |
-| U08           | Memesan Lapangan                   | 18221108 Farhan Algani Putra    | -          |                        |
-| U09           | Mengubah Detail Pemesanan Lapangan | 18221108 Farhan Algani Putra    | -          |                        |
-| U11           | Melihat Riwayat Pemesanan Akun     | 18221080 Fakhri Putra Mahardika | -          |                        |
-| U12           | Melihat Riwayat Pemesanan Lapangan | 18221080 Fakhri Putra Mahardika | -          |                        |
+| Kode Use Case | Judul Use Case                     | NIM dan Nama Penanggung Jawab   | Keterangan | Tangkapan Layar Gambar                                                                            |
+|---------------|------------------------------------|---------------------------------|------------|---------------------------------------------------------------------------------------------------|
+| -             | Home Logged Out                    | -                               | -          | !()[doc/home_logged_out.png]                                                                      |
+| -             | Home Logged In                     | -                               | -          | !()[doc/home_logged_in.png]                                                                       |
+| -             | Admin Home                         | -                               | -          | !()[doc/admin_home.png]                                                                           |
+| U01           | Menyunting Data Lapangan           | 18221102 Salman Ma'arif Achsien | -          | !(U01)[doc/edit_form.png]                                                                         |
+| U02           | Menghapus Lapangan                 | 18221102 Salman Ma'arif Achsien | -          | !(U02)[doc/admin_delete.png]                                                                      |
+| U03           | Menambah Lapangan                  | 18221100 Vincent Franstyo       | -          | !(U03)[]                                                                                          |
+| U04, U05      | Melihat Informasi Lapangan         | 18221100 Vincent Franstyo       | Digabung   | !(U04)[doc/customer_field_info.png] !(U04)[doc/customer_field_info_hover.png]                     |
+| U06           | Register                           | 18221148 Kean Nafis Santang     | -          | !(U06)[doc/register_empty.png] !(U06)[doc/register_failed.png] !(U06)[doc/register_incorrect.png] |
+| U07           | Login                              | 18221148 Kean Nafis Santang     | -          | !(U07)[doc/signin_empty.png] !(U07)[doc/signin_failed.png]                                        |
+| U08           | Memesan Lapangan                   | 18221108 Farhan Algani Putra    | -          | !(U08)[]                                                                                          |
+| U09           | Mengubah Detail Pemesanan Lapangan | 18221108 Farhan Algani Putra    | -          | !(U09)[]                                                                                          |
+| U11           | Melihat Riwayat Pemesanan Akun     | 18221080 Fakhri Putra Mahardika | -          | !(U11)[doc/customer_history.png]                                                                  |
+| U12           | Melihat Riwayat Pemesanan Lapangan | 18221080 Fakhri Putra Mahardika | -          | !(U12)[doc/customer_history.png]                                                                  |
+| -             | Melihat Rekapitulasi Penghasilan   | 18221102 Salman Ma'arif Achsien | -          | !()[doc/admin_income.png]                                                                         |
 
 ## Basis Data, Tabel, dan Atribut
 
