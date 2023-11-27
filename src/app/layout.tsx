@@ -10,9 +10,6 @@ export const metadata: Metadata = {
     description: 'Your Football Partner',
 }
 
-{/*Everything here will be present in all pages */
-}
-
 const RootLayout = ({children}: { children: React.ReactNode }) => {
     return (
         <html lang="en">

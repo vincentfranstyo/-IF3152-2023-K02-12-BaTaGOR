@@ -27,7 +27,7 @@ const FieldDesc: React.FC<FieldDescProps> = ({field}) => {
                     " hover:bg-gray-500 hover:text-white hover:shadow-xl px-2" +
                     " items-center justify-center font-semibold text-lg" +
                     " rounded"}
-                    href={`/pages/FieldEdit/${field.field_id}`}
+                    href={`/pages/FieldEdit/${field?.field_id}`}
                 >edit</Link>
                 {/*TODO: Onclick edit, isOwner: visible, the rest: hidden, tambahin property hidden di className kalau
                  bukan owner*/}
