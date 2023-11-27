@@ -64,7 +64,7 @@ Klik tombol "Income" di kanan atas untuk melihat total pemasukan untuk seluruh l
 | -             | Admin Home                         | -                               | -          | ![](doc/admin_home.png)                                                                           |
 | U01           | Menyunting Data Lapangan           | 18221102 Salman Ma'arif Achsien | -          | ![U01](doc/edit_form.png)                                                                         |
 | U02           | Menghapus Lapangan                 | 18221102 Salman Ma'arif Achsien | -          | ![U02](doc/admin_delete.png)                                                                      |
-| U03           | Menambah Lapangan                  | 18221100 Vincent Franstyo       | -          | ![U03]()                                                                                          |
+| U03           | Menambah Lapangan                  | 18221100 Vincent Franstyo       | -          | ![U03](doc/admin_add_field.png)                                                                   |
 | U04, U05      | Melihat Informasi Lapangan         | 18221100 Vincent Franstyo       | Digabung   | ![U04](doc/customer_field_info.png) ![U04](doc/customer_field_info_hover.png)                     |
 | U06           | Register                           | 18221148 Kean Nafis Santang     | -          | ![U06](doc/register_empty.png) ![U06](doc/register_failed.png) ![U06](doc/register_incorrect.png) |
 | U07           | Login                              | 18221148 Kean Nafis Santang     | -          | ![U07](doc/signin_empty.png) ![U07](doc/signin_failed.png)                                        |
