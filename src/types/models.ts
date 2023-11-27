@@ -41,10 +41,10 @@ interface booking {
     booking_id: number,
     duration_minute: number,
     start_time: any,
-    date: any,
+    booking_date: any,
     total_price: number,
-    field_id: number,
-    user_id: number
+    user_id: number,
+    field_id: number
 }
 
 interface fieldIncome {
