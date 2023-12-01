@@ -1,7 +1,4 @@
 "use client"
-
-import Link from "next/link";
-import Image from "next/image"
 import * as z from "zod"
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "./ui/form";
 import {useForm} from "react-hook-form";
@@ -9,8 +6,6 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "./ui/input";
 import {Button} from "./ui/button";
 import {useRouter} from "next/navigation"
-import {db} from "@/db/db";
-import { prisma } from "@/lib/utils";
 
 
 interface FieldEditProps{
