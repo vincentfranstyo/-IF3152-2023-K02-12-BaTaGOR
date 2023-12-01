@@ -1,10 +1,7 @@
 "use client";
 import React, {useState, useEffect} from 'react';
-import {booking, field, schedule, days} from '@/types/models';
+import {field, schedule} from '@/types/models';
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-import { NextResponse } from 'next/server';
-import Router from 'next/router';
 
 
 interface FieldBookProps {
@@ -24,7 +21,7 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
 
     console.log(scheds);
     useEffect(() => {
-        // getBookings(String(field.field_id));
+        // getBookings(String(fix1eld.field_id));
         // setSchedDetails(scheds?.map(schedule => ({...schedule})));
 
         // for (const selectedDay of generatedDays) {
@@ -105,27 +102,27 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
         const isConsecutive = schedSelected();
     },[])
 
-    const onBookingSubmit = (values: booking) => {
-        const response = await fetch('/api/payment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                duration_minute: values.duration_minute,
-                start_time: values.start_time,
-                booking_date: values.booking_date,
-                total_price: values.total_price,
-                user_id: values.user_id,
-                field_id: values.field_id
-            })
-        })
-        if (response.ok) {
-            Router.push('/page')
-        }else {
-            return NextResponse.json('Error')
-        }
-    }
+    // const onBookingSubmit = (values: booking) => {
+    //     const response = await fetch('/api/payment', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             duration_minute: values.duration_minute,
+    //             start_time: values.start_time,
+    //             booking_date: values.booking_date,
+    //             total_price: values.total_price,
+    //             user_id: values.user_id,
+    //             field_id: values.field_id
+    //         })
+    //     })
+    //     if (response.ok) {
+    //         Router.push('/')
+    //     }else {
+    //         return NextResponse.json('Error')
+    //     }
+    // }
 
     // const toggleSchedSelection = (scheduleId: number) => {
     //     const index = selectedSched.indexOf(scheduleId);
