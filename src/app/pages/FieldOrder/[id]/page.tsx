@@ -150,7 +150,7 @@ const FieldOrder: React.FC<FieldBookPageProps> = ( {params}: {params: {id: strin
                 }
             }
         }
-    }, [scheds])
+    }, [scheds, bookings])
     console.log(scheds)
 
     // const [days, setDays] = useState<days[]>([]);
@@ -206,7 +206,7 @@ const FieldOrder: React.FC<FieldBookPageProps> = ( {params}: {params: {id: strin
     //         }
     //     }
     // }, [bookings])
-    
+    console.log(bookings)
 
     return (
         <>

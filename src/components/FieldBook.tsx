@@ -4,7 +4,6 @@ import {booking, field, schedule, days} from '@/types/models';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { NextResponse } from 'next/server';
-import Router from 'next/router';
 
 
 interface FieldBookProps {
@@ -39,10 +38,12 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
         //         }
         //     }
         // }\
-        setSchedDetails(scheds?.map(schedule => ({...schedule})));
+        // setSchedDetails(scheds?.map(schedule => ({...schedule})));
+        setSchedDetails(scheds)
         // console.log(schedDetails);
         //clearSelectedSched();
     }, [scheds]);
+    console.log(schedDetails)
 
     const getClassNameForSchedule = (scheduleValue: number) => {
         let dynamicClass;
@@ -101,17 +102,29 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
         }
     }
 
+    const selectedTime = () => {
+        let time;
+
+        for (const s of schedDetails) {
+            if (s.disabled == 2) {
+                time = (s.time);
+            }
+        }
+        return time
+    }
+
     useEffect(() => {
         const isConsecutive = schedSelected();
     },[])
 
-    const onBookingSubmit = (values: booking) => {
-        const response = await fetch('/api/payment', {
-            method: 'POST',
+    const onBookingSubmit = async (values: booking) => {
+        const response = await fetch("/api/payment", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                booking_id : values.booking_id,
                 duration_minute: values.duration_minute,
                 start_time: values.start_time,
                 booking_date: values.booking_date,
@@ -121,10 +134,25 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
             })
         })
         if (response.ok) {
-            Router.push('/page')
+            console.log('Updated')
         }else {
             return NextResponse.json('Error')
         }
+    }
+    
+    const totalTime = 60;
+    // const numMonth = currentDate.toLocaleString('en-US', { month: '2-digit' })
+    // const formattedSched = String(currentYear).concat('-').concat(String(numMonth)).concat('-').concat(String(currentDate.getDate)).concat('T').concat()
+    // const bookedTime = selectedTime()
+
+    const data: booking = {
+        booking_id: 0,
+        duration_minute : totalTime,
+        start_time : selectedTime(),
+        booking_date : currentDate.toLocaleDateString(),
+        total_price: field?.rate_per_hour * totalTime,
+        user_id: 8,
+        field_id: field?.field_id
     }
 
     // const toggleSchedSelection = (scheduleId: number) => {
@@ -195,12 +223,12 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
                 </div>
 
                 <button
-                    type={"submit"}>
+                    type={"button"} onClick={() => onBookingSubmit(data)}>
                     <Link
                         href={`/pages/FieldInfo/${field?.field_id}`}
                         className={"h-auto rounded bg-green-300" +
                             " text-black" +
-                            `hover:text-white hover:bg-green-500 mx-auto px-3 py-1 w-[10%] text-center font-bold ${schedSelected() ? 'hidden' : ''}`}>
+                            `hover:text-white hover:bg-green-500 mx-auto px-3 py-1 w-[10%] text-center font-bold ${schedSelected() ? 'cursor-not-allowed' : ''}`}>
                         Confirm Booking
                     </Link>
                 </button>

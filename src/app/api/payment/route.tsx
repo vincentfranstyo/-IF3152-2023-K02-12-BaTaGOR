@@ -26,7 +26,7 @@ export async function POST(req: Request ) {
         // writing data to database
 
         const WAKTU = body.start_time;
-        const [hours, minutes] = WAKTU.split(':').map(Number);
+        const [hours, minutes] = WAKTU.split('.').map(Number);
 
     // Create a new Date object with the current date and extracted hours and minutes
     const currentTime = new Date();
@@ -46,7 +46,7 @@ export async function POST(req: Request ) {
                 booking_date: isoBookingDate,
                 total_price: body.total_price,
                 field_id: body.field_id,
-                user_id: ID
+                user_id: ID            
             }
         }
         )
