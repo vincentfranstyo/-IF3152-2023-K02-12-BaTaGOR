@@ -1,7 +1,7 @@
 "use client";
 import React, {useState, useEffect} from 'react';
-import {field, schedule} from '@/types/models';
-import {field, schedule} from '@/types/models';
+import {field, schedule, booking} from '@/types/models';
+import { NextResponse } from 'next/server';
 import Link from "next/link";
 
 
