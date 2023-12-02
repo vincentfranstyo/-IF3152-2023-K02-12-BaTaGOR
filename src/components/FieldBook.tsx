@@ -1,9 +1,10 @@
 "use client";
 import React, {useState, useEffect} from 'react';
-import {booking, field, schedule, days} from '@/types/models';
+import {field, schedule} from '@/types/models';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { NextResponse } from 'next/server';
+import Router from 'next/router';
 
 
 interface FieldBookProps {
@@ -23,7 +24,7 @@ const FieldBook: React.FC<FieldBookProps> = ({field, scheds}) => {
 
     console.log(scheds);
     useEffect(() => {
-        // getBookings(String(field.field_id));
+        // getBookings(String(fix1eld.field_id));
         // setSchedDetails(scheds?.map(schedule => ({...schedule})));
 
         // for (const selectedDay of generatedDays) {

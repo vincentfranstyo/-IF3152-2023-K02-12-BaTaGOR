@@ -8,21 +8,15 @@ import {Button} from "./ui/button";
 import {useRouter} from "next/navigation"
 
 
-interface FieldEditProps{
-    params:{
-        id: string
-    }
-}
-
 const FormSchema = z
     .object({
         fieldName: z.string().max(100),
         fieldStreet: z.string(),
         fieldCity: z.string(),
         fieldProvince: z.string(),
-        postalCode: z.number().int(),
+        postalCode: z.string(),
         imageURL: z.string(),
-        fieldPrice: z.number().int(),
+        fieldPrice: z.string(),
         fieldStatus: z.string(),
 
     })
@@ -33,10 +27,6 @@ const AddForm = () => {
 
     const router = useRouter();
 
-    // CRACKHOUSE ASS CODEEEEEEEEE SIALAN KAU REACT NEXTJS 
-    const idbknint = window.location.pathname.split("/").slice(-1)[0] // JELEKKKKKKKKKKK TAPI YANG PENTING BISA
-    const id = parseInt(idbknint)
-
     // form resolver + default values
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -45,23 +35,28 @@ const AddForm = () => {
             fieldStreet: "",
             fieldCity: "",
             fieldProvince: "",
-            postalCode: 0,
+            postalCode: "",
             imageURL: "",
-            fieldPrice: 0,
+            fieldPrice: "",
             fieldStatus: "",
         }
     })
 
-    // Function to call the POST function to the user database
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+        const fieldResponse = await fetch("/api/fields", {
+            method: "GET"
+        });
 
-        const response = await fetch(`/api/fields/${id}`, {
+        const fieldsData = await fieldResponse.json();
+        const length = fieldsData.length;
+
+        const response = await fetch(`/api/fields`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                field_id           : id,
+                field_id           : length + 1,
                 field_name         : values.fieldName,
                 street             : values.fieldStreet,
                 city               : values.fieldCity,
@@ -70,10 +65,11 @@ const AddForm = () => {
                 image_url          : values.imageURL,
                 rate_per_hour      : Number(values.fieldPrice),
                 operational_status : values.fieldStatus,
+                owner_id: 6
             })
         })
         if (response.ok) {
-            router.push(`/pages/FieldInfo/${id}`)
+            router.push(`/`)
         }
     }
 
@@ -199,7 +195,7 @@ const AddForm = () => {
                         </div>
                         <div className="mt-8">
                             <Button type="submit"
-                                    className="font-inter w-full px-4 py-6 tracking-wide text-white transition-colors duration-200 transform bg-orange-400 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-600 text-md">Register</Button>
+                                    className="font-inter w-full px-4 py-6 tracking-wide text-white transition-colors duration-200 transform bg-orange-400 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-gray-600 text-md">Add</Button>
                         </div>
 
                     </form>
