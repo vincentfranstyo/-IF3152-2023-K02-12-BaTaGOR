@@ -52,24 +52,25 @@ export async function POST(req: Request ) {
         )
         return NextResponse.json({booking: updateBooking, message: "Booking created successfully"}, {status : 200});
 
-    } else if (userAccessLevel === "Staff") {
-        /* const IDFieldStaff = await db.staff.findFirst({
-    where: {
-    user_id: Number(ID),
-    },
-    })
-    .then((staff) => staff?.field_id || null);
+    // } else if (userAccessLevel === "Staff") {
+    //     /* const IDFieldStaff = await db.staff.findFirst({
+    // where: {
+    // user_id: Number(ID),
+    // },
+    // })
+    // .then((staff) => staff?.field_id || null);
 
-    // Menggunakan field_id dalam query archives
-    history = await db.booking.findMany({
-    where: {
-        field_id: IDFieldStaff ?? undefined,
-    },
-    }); */
+    // // Menggunakan field_id dalam query archives
+    // history = await db.booking.findMany({
+    // where: {
+    //     field_id: IDFieldStaff ?? undefined,
+    // },
+    // }); */
 
 
 
-    }
+    // }
+        }
     } catch (error) {
         console.log(error)
         return new NextResponse('Something went wrong', { status: 400 });
